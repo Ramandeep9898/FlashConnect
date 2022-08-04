@@ -1,0 +1,14 @@
+.lf-aside-item {
+  display: flex;
+  gap: 16px;
+  font-size: 24px;
+  align-items: center;
+  font-weight: 400;
+  padding: 8px 16px;
+  color: var(--headingColorblack);
+  width: 20%;
+  cursor: pointer;
+}
+.lf-aside {
+  margin: 24px;
+}
