@@ -1,0 +1,29 @@
+.user-info {
+  display: flex;
+  gap: 5px;
+}
+.user {
+  font-size: 16px;
+  font-weight: 500;
+}
+.color-text {
+  color: #764abc;
+}
+.comment-text {
+  font-weight: 400;
+}
+.user-id {
+  color: #918b8b;
+}
+.cursor {
+  cursor: pointer;
+}
+.comment-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.comment-option {
+  font-size: 18px;
+  color: #918b8b;
+}
