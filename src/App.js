@@ -4,6 +4,7 @@ import { Header } from "./Components/Header.Component/header";
 import { LeftAside } from "./Components/LeftAside.Component/LeftAside";
 import { NewPost } from "./Components/NewPost.Component/NewPost";
 import { Comment } from "./Components/Comment.Component/Comment";
+import { RightAside } from "./Components/RightAside.component/RightAside";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         {/* <Header />
         <LeftAside /> */}
         {/* <NewPost /> */}
-        <Comment />
+        {/* <Comment /> */}
+        <RightAside />
       </div>
     </>
   );
