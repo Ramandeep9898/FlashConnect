@@ -6,7 +6,7 @@ export const RightAside = () => {
   return (
     <>
       <div className="ryt-aside">
-        <div className="ryt-aside-heading">People you may know</div>
+        <div className="ryt-aside-heading capitalize">People you may know</div>
         <ul class="list border displayF space-between ppl-yk mgT-16">
           <div className="list-start-sec displayF">
             <img src={img} alt="..." class="avatar avatar-s cursor" />

@@ -31,7 +31,7 @@ export const NewPost = () => {
                 </ul>
               </div>
               <ul className="new-post-item">
-                <button className="btn solid-pri-btn ">Create New Post</button>
+                <button className="btn  bg-pur  ">Create New Post</button>
               </ul>
             </div>
           </div>

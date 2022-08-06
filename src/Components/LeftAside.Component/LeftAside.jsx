@@ -31,9 +31,7 @@ export const LeftAside = () => {
             <span className="lf-aside-item-heading">Profile</span>
           </li>
           <li className="lf-aside-item mgT-8">
-            <button className="btn solid-pri-btn width100">
-              Create New Post
-            </button>
+            <button className="btn bg-pur width100">Create New Post</button>
           </li>
         </ul>
       </nav>
