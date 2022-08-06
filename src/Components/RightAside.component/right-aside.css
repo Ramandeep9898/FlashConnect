@@ -12,10 +12,10 @@
 .ryt-aside {
   padding: 10px;
   border-radius: 8px;
+  background-color: var(--post-gray-bg);
 }
 .ppl-yk {
   padding: 0 10px;
-  background-color: var(--post-gray-bg);
 }
 .ryt-aside-heading {
   font-size: 18px;
