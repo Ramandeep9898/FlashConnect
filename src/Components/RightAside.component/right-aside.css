@@ -1,0 +1,27 @@
+.displayF {
+  display: flex;
+  align-items: center;
+}
+.border {
+  border-radius: 8px;
+  border: 0px solid transparent;
+}
+.space-between {
+  justify-content: space-between;
+}
+.ryt-aside {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--post-gray-bg);
+}
+.ppl-yk {
+  padding: 0 10px;
+}
+.ryt-aside-heading {
+  font-size: 18px;
+  font-weight: 500;
+}
+.follow {
+  color: #764abc;
+  font-weight: 500;
+}
