@@ -1,5 +1,6 @@
 import React from "react";
 import "./left-aside.css";
+import img from "./60111.jpg";
 import { BiHomeSmile, BiBookmark } from "react-icons/bi";
 import { MdOutlineTravelExplore } from "react-icons/md";
 import { RiNotificationLine } from "react-icons/ri";
@@ -12,28 +13,35 @@ export const LeftAside = () => {
         <ul className="lf-aside-items">
           <li className="lf-aside-item mgT-8">
             <BiHomeSmile />
-            <span className="lf-aside-item-heading">Home</span>
+            <span>Home</span>
           </li>
           <li className="lf-aside-item mgT-8">
             <MdOutlineTravelExplore />
-            <span className="lf-aside-item-heading">Explore</span>
+            <span>Explore</span>
           </li>
           <li className="lf-aside-item mgT-8">
             <BiBookmark />
-            <span className="lf-aside-item-heading">Bookmarks</span>
+            <span>Bookmarks</span>
           </li>
           <li className="lf-aside-item mgT-8">
             <RiNotificationLine />
-            <span className="lf-aside-item-heading">Notification</span>
+            <span>Notification</span>
           </li>
           <li className="lf-aside-item mgT-8">
             <CgProfile />
-            <span className="lf-aside-item-heading">Profile</span>
+            <span>Profile</span>
           </li>
           <li className="lf-aside-item mgT-8">
             <button className="btn bg-pur width100">Create New Post</button>
           </li>
         </ul>
+        <div className="profile ">
+          <img src={img} alt="..." className="avatar avatar-md" />
+          <div className="profile-info">
+            <span className="color cursor">Ramandeep</span>
+            <span className="list-sec-color cursor">@ramandeep</span>
+          </div>
+        </div>
       </nav>
     </>
   );

@@ -10,9 +10,9 @@ export const RightAside = () => {
         <ul class="list border displayF space-between ppl-yk mgT-16">
           <div className="list-start-sec displayF">
             <img src={img} alt="..." class="avatar avatar-s cursor" />
-            <li class="list-items list-width">
+            <li className="list-items list-width">
               Ramandeep
-              <span class="list-sec-text">@ramandeep</span>
+              <span className="list-sec-text">@ramandeep</span>
             </li>
           </div>
           <div className="list-end-sec">

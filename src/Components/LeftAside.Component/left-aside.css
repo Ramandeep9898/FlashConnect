@@ -11,7 +11,23 @@
 }
 .lf-aside {
   margin: 0 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 190px;
 }
 .bg-pur {
   background-color: #764abc;
+}
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.profile-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+.list-sec-color {
+  color: rgba(0, 0, 0, 0.54);
 }
