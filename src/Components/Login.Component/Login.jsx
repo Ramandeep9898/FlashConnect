@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./login.css";
 import { Link } from "react-router-dom";
-// import { useAuth } from "../../Custom-hooks/useAuth";
+import { login, testLogin } from "../../redux/reducers/authSlice";
 
 const Login = ({ setAuthVal }) => {
+  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
@@ -16,7 +18,6 @@ const Login = ({ setAuthVal }) => {
     password: "test123",
   };
 
-  const { logInAuth } = useAuth();
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
@@ -37,7 +38,7 @@ const Login = ({ setAuthVal }) => {
   //   }
   // };
   const loginHandler = () => {
-    logInAuth(loginDetails);
+    dispatch(login(loginDetails));
   };
 
   return (
@@ -95,7 +96,7 @@ const Login = ({ setAuthVal }) => {
                   className="textarea-label"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLoginDetails(testLoginDetails);
+                    dispatch(testLogin());
                   }}
                 >
                   TEST LOGIN ?
