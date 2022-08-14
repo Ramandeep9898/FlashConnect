@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/reducers/authSlice";
+import { Link } from "react-router-dom";
 
 export const LeftAside = () => {
   const dispatch = useDispatch();
@@ -41,13 +42,15 @@ export const LeftAside = () => {
         </ul>
         <div className="profile">
           <ul class="list border displayF space-between ppl-yk mgT-16">
-            <div className="list-start-sec displayF">
-              <img src={img} alt="..." class="avatar avatar-s cursor" />
-              <li className="list-items list-width">
-                Ramandeep
-                <span className="list-sec-text">@ramandeep</span>
-              </li>
-            </div>
+            <Link to="/user">
+              <div className="list-start-sec displayF">
+                <img src={img} alt="..." class="avatar avatar-s cursor" />
+                <li className="list-items list-width">
+                  Ramandeep
+                  <span className="list-sec-text">@ramandeep</span>
+                </li>
+              </div>
+            </Link>
             <div className="list-end-sec">
               <p
                 onClick={() => {
