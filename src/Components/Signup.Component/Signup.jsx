@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useAuth } from "../../Custom-hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../redux/reducers/authSlice";
 
 const SignUp = ({ setAuthVal }) => {
-  const { signUpAuth } = useAuth();
+  const dispatch = useDispatch();
   const [signUpDetails, setSignUpDetails] = useState({
+    username: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -14,9 +16,9 @@ const SignUp = ({ setAuthVal }) => {
     message: "",
   });
 
-  const signUpHandler = (signUpDetails) => {
+  const signUpHandler = () => {
     console.log("signup details", signUpDetails);
-    signUpAuth(signUpDetails);
+    dispatch(signUp(signUpDetails));
   };
 
   console.log(signUpDetails);
@@ -26,6 +28,27 @@ const SignUp = ({ setAuthVal }) => {
         <div className="login-container">
           <div className="login-body">
             <p className="h3 color capitalize fW-700 text-center">sign up</p>
+
+            <div className="input-box mgT-20">
+              <label for="first-name" className="textarea-label">
+                Username
+              </label>
+              <input
+                id="first-name"
+                type="text"
+                className="input"
+                placeholder="Username"
+                valide
+                value={signUpDetails.username}
+                onChange={(e) => {
+                  setSignUpDetails({
+                    ...signUpDetails,
+                    username: e.target.value,
+                  });
+                }}
+              />
+            </div>
+
             <div className="input-box mgT-20">
               <label for="email" className="textarea-label">
                 email
@@ -114,14 +137,14 @@ const SignUp = ({ setAuthVal }) => {
             <button
               className="btn solid-pri-btn width100 mgT-20"
               onClick={() => {
-                signUpHandler(signUpDetails);
+                signUpHandler();
               }}
             >
               sign up
             </button>
 
             <p
-              className="h5 color capitalize fW-500 text-center mgT-20"
+              className="h5 color capitalize fW-500 text-center mgT-20 cursor"
               onClick={() => {
                 setAuthVal(true);
               }}
