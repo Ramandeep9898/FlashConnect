@@ -6,7 +6,7 @@ export function Auth() {
   const [authVal, setAuthVal] = useState(true);
 
   return (
-    <main className="sm-main-auth">
+    <main>
       {authVal ? (
         <Login setAuthVal={setAuthVal} />
       ) : (

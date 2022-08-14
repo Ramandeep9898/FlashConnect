@@ -7,16 +7,12 @@ import { login, testLogin } from "../../redux/reducers/authSlice";
 const Login = ({ setAuthVal }) => {
   const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState({
     message: "",
   });
-  const testLoginDetails = {
-    email: "test@test.com",
-    password: "test123",
-  };
 
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -38,6 +34,7 @@ const Login = ({ setAuthVal }) => {
   //   }
   // };
   const loginHandler = () => {
+    console.log(loginDetails);
     dispatch(login(loginDetails));
   };
 
@@ -49,18 +46,21 @@ const Login = ({ setAuthVal }) => {
             <p className="h3 color capitalize fW-700 text-center">login</p>
             <div className="input-box mgT-20">
               <div>{errorMessage.message}</div>
-              <label for="email" className="textarea-label">
+              <label for="text" className="textarea-label">
                 email
               </label>
               <input
-                id="email"
-                type="email"
+                id="text"
+                type="text"
                 className="input"
-                placeholder="you@example.com"
-                value={loginDetails.email}
+                placeholder="Raman deep"
+                value={loginDetails.username}
                 valide
                 onChange={(e) => {
-                  setLoginDetails({ ...loginDetails, email: e.target.value });
+                  setLoginDetails({
+                    ...loginDetails,
+                    username: e.target.value,
+                  });
                   console.log(loginDetails);
                 }}
               />
