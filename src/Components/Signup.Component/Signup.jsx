@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../redux/reducers/authSlice";
+// import { useAuth } from "../../Custom-hooks/useAuth";
 
 const SignUp = ({ setAuthVal }) => {
-  const dispatch = useDispatch();
+  const { signUpAuth } = useAuth();
   const [signUpDetails, setSignUpDetails] = useState({
-    username: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -16,9 +14,9 @@ const SignUp = ({ setAuthVal }) => {
     message: "",
   });
 
-  const signUpHandler = () => {
+  const signUpHandler = (signUpDetails) => {
     console.log("signup details", signUpDetails);
-    dispatch(signUp(signUpDetails));
+    signUpAuth(signUpDetails);
   };
 
   console.log(signUpDetails);
@@ -28,27 +26,6 @@ const SignUp = ({ setAuthVal }) => {
         <div className="login-container">
           <div className="login-body">
             <p className="h3 color capitalize fW-700 text-center">sign up</p>
-
-            <div className="input-box mgT-20">
-              <label for="first-name" className="textarea-label">
-                Username
-              </label>
-              <input
-                id="first-name"
-                type="text"
-                className="input"
-                placeholder="Username"
-                valide
-                value={signUpDetails.username}
-                onChange={(e) => {
-                  setSignUpDetails({
-                    ...signUpDetails,
-                    username: e.target.value,
-                  });
-                }}
-              />
-            </div>
-
             <div className="input-box mgT-20">
               <label for="email" className="textarea-label">
                 email
@@ -137,14 +114,14 @@ const SignUp = ({ setAuthVal }) => {
             <button
               className="btn solid-pri-btn width100 mgT-20"
               onClick={() => {
-                signUpHandler();
+                signUpHandler(signUpDetails);
               }}
             >
               sign up
             </button>
 
             <p
-              className="h5 color capitalize fW-500 text-center mgT-20 cursor"
+              className="h5 color capitalize fW-500 text-center mgT-20"
               onClick={() => {
                 setAuthVal(true);
               }}

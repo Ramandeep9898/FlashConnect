@@ -6,17 +6,16 @@ const sign = require("jwt-encode");
 /**
  * All the routes related to Auth are present here.
  * These are Publicly accessible routes.
- **/
+ * */
 
 /**
  * This handler handles user signups.
  * send POST Request at /api/auth/signup
  * body contains {firstName, lastName, username, password}
- **/
+ * */
 
 export const signupHandler = function (schema, request) {
   const { username, password, ...rest } = JSON.parse(request.requestBody);
-  console.log(username, password);
   try {
     // check if username already exists
     const foundUser = schema.users.findBy({ username: username });

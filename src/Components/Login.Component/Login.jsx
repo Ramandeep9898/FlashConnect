@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import "./login.css";
 import { Link } from "react-router-dom";
-import { login, testLogin } from "../../redux/reducers/authSlice";
+// import { useAuth } from "../../Custom-hooks/useAuth";
 
 const Login = ({ setAuthVal }) => {
-  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState({
     message: "",
   });
+  const testLoginDetails = {
+    email: "test@test.com",
+    password: "test123",
+  };
 
+  const { logInAuth } = useAuth();
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
@@ -34,8 +37,7 @@ const Login = ({ setAuthVal }) => {
   //   }
   // };
   const loginHandler = () => {
-    console.log(loginDetails);
-    dispatch(login(loginDetails));
+    logInAuth(loginDetails);
   };
 
   return (
@@ -46,21 +48,18 @@ const Login = ({ setAuthVal }) => {
             <p className="h3 color capitalize fW-700 text-center">login</p>
             <div className="input-box mgT-20">
               <div>{errorMessage.message}</div>
-              <label for="text" className="textarea-label">
+              <label for="email" className="textarea-label">
                 email
               </label>
               <input
-                id="text"
-                type="text"
+                id="email"
+                type="email"
                 className="input"
-                placeholder="Raman deep"
-                value={loginDetails.username}
+                placeholder="you@example.com"
+                value={loginDetails.email}
                 valide
                 onChange={(e) => {
-                  setLoginDetails({
-                    ...loginDetails,
-                    username: e.target.value,
-                  });
+                  setLoginDetails({ ...loginDetails, email: e.target.value });
                   console.log(loginDetails);
                 }}
               />
@@ -96,7 +95,7 @@ const Login = ({ setAuthVal }) => {
                   className="textarea-label"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(testLogin());
+                    setLoginDetails(testLoginDetails);
                   }}
                 >
                   TEST LOGIN ?
@@ -113,7 +112,7 @@ const Login = ({ setAuthVal }) => {
             </button>
 
             <p
-              className="h5 color capitalize fW-500 text-center mgT-20 cursor"
+              className="h5 color capitalize fW-500 text-center mgT-20"
               onClick={() => {
                 setAuthVal(false);
               }}

@@ -15,7 +15,16 @@ export const Home = () => {
         <div className="left-aside-position">
           <LeftAside />
         </div>
-        <div className="main"></div>
+        <div className="main">
+          <NewPost />
+          <NewPost />
+          <NewPost />
+          <NewPost />
+          <NewPost />
+          <NewPost />
+          <NewPost />
+          <NewPost />
+        </div>
         <div className="right-aside">
           <RightAside />
         </div>
