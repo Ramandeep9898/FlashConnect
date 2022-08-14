@@ -19,23 +19,39 @@ export const login = createAsyncThunk("auth/login", async (loginDetails) => {
   }
 });
 
-export const signUp = createAsyncThunk(
-  "auth/signup",
-  async (signupDetails, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(`/api/auth/login`, {
-        username: signupDetails.username,
-        password: signupDetails.password,
-        lastname: signupDetails.lastname,
-        email: signupDetails.email,
-        password: signupDetails.password,
-      });
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+export const signUp = createAsyncThunk("auth/sign", async (signupDetails) => {
+  try {
+    console.log(signupDetails);
+    const response = await axios.post("/api/auth/signup", {
+      username: signupDetails.username,
+      password: signupDetails.password,
+      lastname: signupDetails.lastname,
+      email: signupDetails.email,
+      password: signupDetails.password,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(`${error}`);
   }
-);
+});
+
+// export const signUp = createAsyncThunk(
+//   "auth/signup",
+//   async (signupDetails, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.post(`/api/auth/login`, {
+//         username: signupDetails.username,
+//         password: signupDetails.password,
+//         lastname: signupDetails.lastname,
+//         email: signupDetails.email,
+//         password: signupDetails.password,
+//       });
+//       return response.data;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 export const testLogin = createAsyncThunk("auth/testLogin", async () => {
   try {
@@ -98,8 +114,14 @@ export const authSlice = createSlice({
       .addCase(testLogin.rejected, (state, action) => {
         console.log("testLoginrejected");
       })
+      .addCase(signUp.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.user = action.payload.createdUser;
+          console.log("Signup Successful");
+        }
+      })
       .addCase(logout.fulfilled, (state, action) => {
-        state.user = {};
+        state.user = null;
         console.log("Logged Out");
       });
   },

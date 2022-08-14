@@ -113,7 +113,7 @@ const Login = ({ setAuthVal }) => {
             </button>
 
             <p
-              className="h5 color capitalize fW-500 text-center mgT-20"
+              className="h5 color capitalize fW-500 text-center mgT-20 cursor"
               onClick={() => {
                 setAuthVal(false);
               }}

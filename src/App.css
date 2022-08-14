@@ -22,6 +22,9 @@
     Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+.cursor {
+  cursor: pointer;
+}
 :root {
   --headingColorblack: #ICIE21;
   --post-gray-bg: #6067701a;
