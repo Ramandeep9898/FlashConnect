@@ -35,24 +35,6 @@ export const signUp = createAsyncThunk("auth/sign", async (signupDetails) => {
   }
 });
 
-// export const signUp = createAsyncThunk(
-//   "auth/signup",
-//   async (signupDetails, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.post(`/api/auth/login`, {
-//         username: signupDetails.username,
-//         password: signupDetails.password,
-//         lastname: signupDetails.lastname,
-//         email: signupDetails.email,
-//         password: signupDetails.password,
-//       });
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
-
 export const testLogin = createAsyncThunk("auth/testLogin", async () => {
   try {
     const response = await axios.post("/api/auth/login", {
