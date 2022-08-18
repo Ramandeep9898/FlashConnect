@@ -13,7 +13,7 @@ export const users = [
     username: "nezukokamado",
     email: "nezuko1234@gmail.com",
     profilePhoto:
-      "https://upload.wikimedia.org/wikipedia/en/c/c0/NezukoKamado.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Kh6YvZZ0MV-fiOWzjRgQWCQGJbZFM45RcA&usqp=CAU",
     coverPhoto:
       "https://cdn.bhdw.net/im/demon-slayer-nezuko-kamado-16-wallpaper-82505_w635.webp",
     bio: "I'm member of the Twelve Kizuki and a Blood Demon",

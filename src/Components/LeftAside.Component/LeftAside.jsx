@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 
 export const LeftAside = () => {
   const user = useSelector((state) => state.auth.user);
-  console.log("user", user);
+  const allUser = useSelector((state) => state.users.users);
+  const loginDetails = allUser.find((item) => item.username === user?.username);
 
   const dispatch = useDispatch();
   return (
@@ -40,13 +41,15 @@ export const LeftAside = () => {
               <CgProfile />
               <span>Profile</span>
             </li>
-            <li className="lf-aside-item mgT-8">
-              <button className="btn bg-pur width100">Create New Post</button>
-            </li>
+            <Link to="/home">
+              <li className="lf-aside-item mgT-8">
+                <button className="btn bg-pur width100">Create New Post</button>
+              </li>
+            </Link>
           </ul>
           <div className="profile">
             <ul class="list border displayF space-between ppl-yk mgT-16">
-              <Link to="/user">
+              <Link to={`/${loginDetails?.username}`}>
                 <div className="list-start-sec displayF">
                   <img
                     src={user.profilePhoto}

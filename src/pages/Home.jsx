@@ -3,7 +3,7 @@ import "./home.css";
 import { Header } from "../Components/Header.Component/header";
 import { LeftAside } from "../Components/LeftAside.Component/LeftAside";
 import { RightAside } from "../Components/RightAside.component/RightAside";
-import { NewPost } from "../Components/NewPost.Component/NewPost";
+import { CreateNewPost } from "../Components/NewPost.Component/CreateNewPost";
 
 export const Home = () => {
   return (
@@ -15,7 +15,9 @@ export const Home = () => {
         <div className="left-aside-position">
           <LeftAside />
         </div>
-        <div className="main"></div>
+        <div className="main">
+          <CreateNewPost />
+        </div>
         <div className="right-aside">
           <RightAside />
         </div>
