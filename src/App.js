@@ -9,10 +9,12 @@ import { Auth } from "./pages/auth/Auth";
 import MockAPI from "./Mockman";
 import { User } from "./Components/User.Component/User";
 import { getUsers } from "./redux/reducers/userSlice";
+import { getPost } from "./redux/reducers/postSlice";
 import { verify } from "./redux/reducers/authSlice";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getPost());
     dispatch(getUsers());
   }, []);
   return (

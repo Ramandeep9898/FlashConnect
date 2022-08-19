@@ -12,6 +12,7 @@ import { v4 as uuid } from "uuid";
  * */
 
 export const getAllpostsHandler = function () {
+  console.log("hi");
   return new Response(200, {}, { posts: this.db.posts });
 };
 

@@ -9,20 +9,23 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
   {
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+    firstName: "Nezuko",
+    lastName: "Kamado",
+    username: "nezukokamado",
+    profilePhoto:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Kh6YvZZ0MV-fiOWzjRgQWCQGJbZFM45RcA&usqp=CAU",
+    content: "hellooooo ",
     likes: {
-      likeCount: 0,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "zenitsuagatsuma",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -42,19 +45,135 @@ export const posts = [
   },
   {
     _id: uuid(),
+    firstName: "Tnjiro ",
+    lastName: "Kamado",
+    username: "tnjirokamado",
+    profilePhoto:
+      "https://i.pinimg.com/736x/89/b1/d4/89b1d419bf1e7a9d2df7fa55dec05d14.jpg",
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "No matter how many people you may lose, you have no choice but to go on living -- no matter how devastating the blows, maybe",
     likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
 
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "nezukokamado",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    firstName: "Hashibira",
+    lastName: " Inosuke",
+    username: "hashibirainosuke",
+    profilePhoto:
+      "https://i.pinimg.com/564x/e3/95/5c/e3955c17a8caed3eb0ec2e27dd71786b.jpg",
+    content: "It's not about going first. It's about the overall flow.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+
+    comments: [
+      {
+        _id: uuid(),
+        username: "nezukokamado",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    firstName: "Hashibira",
+    lastName: " Inosuke",
+    username: "hashibirainosuke",
+    profilePhoto:
+      "https://i.pinimg.com/564x/e3/95/5c/e3955c17a8caed3eb0ec2e27dd71786b.jpg",
+    content: "It's not about going first. It's about the overall flow.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+
+    comments: [
+      {
+        _id: uuid(),
+        username: "nezukokamado",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    firstName: "Muzan",
+    lastName: "Kibutsuji",
+    username: "muzankibutsuji",
+    profilePhoto:
+      "https://m.media-amazon.com/images/M/MV5BMzcyZjYxYzktMWZhMi00ZGFkLTllMTEtNjJjZjU4ODdlYzRmXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
+    content:
+      "Don’t ever give up. Even if it’s painful, even if it’s agonizing, don’t try to take the easy way out.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+
+    comments: [
+      {
+        _id: uuid(),
+        username: "nezukokamado",
         text: "Interesting",
         votes: {
           upvotedBy: [],

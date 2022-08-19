@@ -4,7 +4,6 @@ import img from "./60111.jpg";
 import { AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
 import { GoComment } from "react-icons/go";
 import { BsBookmark } from "react-icons/bs";
-// BsBookmark
 
 export const Comment = () => {
   return (

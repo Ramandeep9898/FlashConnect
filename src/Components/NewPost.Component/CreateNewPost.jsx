@@ -6,8 +6,10 @@ import { IoImageOutline } from "react-icons/io5";
 import { BsEmojiWink } from "react-icons/bs";
 import { AiOutlineGif } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
+import { createPost } from "../../redux/reducers/postSlice";
 
 export const CreateNewPost = () => {
+  const dispatch = useDispatch();
   const [postDetails, setpostDetails] = useState({
     postContent: "",
     postImage: "",
@@ -17,7 +19,9 @@ export const CreateNewPost = () => {
   const allUser = useSelector((state) => state.users.users);
   const loginDetails = allUser.find((item) => item.username === user.username);
 
-  const createPostHandler = (postDetails) => {};
+  const createPostHandler = (postDetails) => {
+    dispatch(createPost(postDetails));
+  };
 
   return (
     <>
