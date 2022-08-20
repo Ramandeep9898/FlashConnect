@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   // loading: false,
   user: null,
-  // token: null,
+  token: null,
 };
 localStorage.setItem("flashToken", "123");
 
@@ -81,8 +81,10 @@ export const authSlice = createSlice({
         console.log("pending");
       })
       .addCase(login.fulfilled, (state, action) => {
+        localStorage.setItem("flashConnectToken", action.payload.encodedToken);
         state.user = action.payload.foundUser;
         console.log("login done");
+        state.token = action.payload.encodedToken;
       })
       .addCase(login.rejected, (state, action) => {
         console.log("login failed");
@@ -90,17 +92,19 @@ export const authSlice = createSlice({
 
       .addCase(testLogin.fulfilled, (state, action) => {
         console.log(action);
+        localStorage.setItem("flashConnectToken", action.payload.encodedToken);
         state.user = action.payload.foundUser;
+        state.token = action.payload.encodedToken;
         console.log("Login Successful");
       })
       .addCase(testLogin.rejected, (state, action) => {
         console.log("testLoginrejected");
       })
       .addCase(signUp.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.user = action.payload.createdUser;
-          console.log("Signup Successful");
-        }
+        localStorage.setItem("flashConnectToken", action.payload.encodedToken);
+        state.token = action.payload.encodedToken;
+        state.user = action.payload.createdUser;
+        console.log("Signup Successful");
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = null;

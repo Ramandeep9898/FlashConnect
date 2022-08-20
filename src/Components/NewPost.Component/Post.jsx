@@ -5,8 +5,11 @@ import { AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
 import { GoComment } from "react-icons/go";
 import { BsBookmark } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { likePost } from "../../redux/reducers/postSlice";
 
 export const Post = ({ post }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <div className="new-post">
@@ -32,7 +35,12 @@ export const Post = ({ post }) => {
             </div>
 
             <ul className="comment-options mgT-16">
-              <li className="comment-option cursor">
+              <li
+                className="comment-option cursor"
+                onClick={() => {
+                  dispatch(likePost(post._id));
+                }}
+              >
                 <AiOutlineHeart />
                 {post.likes.likeCount}
               </li>

@@ -24,16 +24,14 @@ export const User = () => {
   const profileUser = allUser.find((item) => item.username === username);
 
   let currentUserPosts = useSelector((state) => state.users.profileUserPosts);
-  console.log(currentUserPosts);
   let currentUser =
     logindetails.username === profileUser.username ? logindetails : profileUser;
-  console.log(currentUser);
 
   useEffect(() => {
     if (currentUser) {
       dispatch(getUserPost(currentUser.username));
     }
-  });
+  }, [currentUser]);
 
   return (
     <>
