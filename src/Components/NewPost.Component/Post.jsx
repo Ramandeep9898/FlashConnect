@@ -1,14 +1,12 @@
 import React from "react";
 import "./new-post.css";
-import img from "./60111.jpg";
 import "../Comment.Component/comment.css";
 import { AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
 import { GoComment } from "react-icons/go";
 import { BsBookmark } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export const Post = ({ post }) => {
-  console.log(post);
-
   return (
     <>
       <div className="new-post">
@@ -23,7 +21,9 @@ export const Post = ({ post }) => {
           <div className="textarea-container">
             <div className="user-info  mgT-4">
               <div className="user capitalize">{post.firstName} </div>
-              <div className="user-id cursor">@{post.username}</div>
+              <Link to={`/${post.username}`}>
+                <div className="user-id cursor">@{post.username}</div>
+              </Link>
               <div className="user-id">•</div>
               <div className="user-id">1m</div>
             </div>
@@ -34,9 +34,11 @@ export const Post = ({ post }) => {
             <ul className="comment-options mgT-16">
               <li className="comment-option cursor">
                 <AiOutlineHeart />
+                {post.likes.likeCount}
               </li>
               <li className="comment-option cursor">
                 <GoComment />
+                {post.comments.length}
               </li>
               <li className="comment-option cursor">
                 <AiOutlineShareAlt />

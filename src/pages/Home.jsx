@@ -22,8 +22,9 @@ export const Home = () => {
         <div className="main">
           <CreateNewPost />
 
-          {posts.length &&
-            posts.map((post) => <Post key={post._id} post={post} />)}
+          {posts.map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
         </div>
         <div className="right-aside">
           <RightAside />

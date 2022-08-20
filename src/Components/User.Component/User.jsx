@@ -1,20 +1,40 @@
 import React from "react";
-import img from "./60111.jpg";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FiEdit2, FiShare2, FiLogOut } from "react-icons/fi";
 import { Header } from "../Header.Component/header";
 import { LeftAside } from "../LeftAside.Component/LeftAside";
 import { RightAside } from "../RightAside.component/RightAside";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getUserPost } from "../../redux/reducers/userSlice";
+import { Post } from "../NewPost.Component/Post";
 
 export const User = () => {
+  const { username } = useParams();
+  console.log("username", username);
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
   const allUser = useSelector((state) => state.users.users);
 
   const logindetails = allUser.find(
     (item) => item.usersname === user.usersname
   );
+
+  const profileUser = allUser.find((item) => item.username === username);
+
+  let currentUserPosts = useSelector((state) => state.users.profileUserPosts);
+  console.log(currentUserPosts);
+  let currentUser =
+    logindetails.username === profileUser.username ? logindetails : profileUser;
+  console.log(currentUser);
+
+  useEffect(() => {
+    if (currentUser) {
+      dispatch(getUserPost(currentUser.username));
+    }
+  });
+
   return (
     <>
       <Header />
@@ -27,16 +47,16 @@ export const User = () => {
             <div className="new-post-body">
               <div className="avatar-sec">
                 <img
-                  src={logindetails.profilePhoto}
+                  src={profileUser.profilePhoto}
                   alt="..."
                   className="avatar avatar-xl"
                 />
               </div>
               <div className="textarea-container">
                 <div className="user-container">
-                  <div className="h4 fW-700">{logindetails.firstName}</div>
-                  <div className="h5 grey-color">@{logindetails.username}</div>
-                  <div className="h5 mgT-16">{logindetails.bio}</div>
+                  <div className="h4 fW-700">{profileUser.firstName}</div>
+                  <div className="h5 grey-color">@{profileUser.username}</div>
+                  <div className="h5 mgT-16">{profileUser.bio}</div>
                   <div className="h5 mgT-16">
                     <a href="https://ramandeep.netlify.app/index.html">
                       https://ramandeep.netlify.app/index.html
@@ -49,7 +69,7 @@ export const User = () => {
                       <span>
                         <span className="fW-500">
                           {" "}
-                          {logindetails.followers.length}
+                          {profileUser.followers.length}
                         </span>{" "}
                         Followers
                       </span>
@@ -67,7 +87,7 @@ export const User = () => {
                       <span>
                         <span className="fW-500">
                           {" "}
-                          {logindetails.followers.length}
+                          {profileUser.followers.length}
                         </span>{" "}
                         post
                       </span>
@@ -75,21 +95,30 @@ export const User = () => {
                   </div>
                   <ul className="h5 gap">
                     <button className="btn bg-pur ">
-                      <FiEdit2 />
-                    </button>
-                    <button className="btn bg-pur ">
                       <FiShare2 />
                     </button>
-                    <button className="btn bg-pur ">
-                      <FiLogOut />
-                    </button>
+                    {logindetails?.username === profileUser?.username ? (
+                      <div className="gap">
+                        <button className="btn bg-pur">
+                          <FiEdit2 />
+                        </button>
+                        <button className="btn bg-pur">
+                          <FiLogOut />
+                        </button>
+                      </div>
+                    ) : (
+                      " "
+                    )}
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* post */}
+          {/* userPost */}
+          {currentUserPosts.map((posts) => (
+            <Post post={posts} key={posts._id} />
+          ))}
+          {/* <Post /> */}
         </div>
 
         <RightAside />

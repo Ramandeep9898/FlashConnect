@@ -1,6 +1,5 @@
 import React from "react";
 import "./new-post.css";
-import img from "./60111.jpg";
 import { useState } from "react";
 import { IoImageOutline } from "react-icons/io5";
 import { BsEmojiWink } from "react-icons/bs";

@@ -27,7 +27,7 @@ function App() {
 
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/user" element={<User />} />
+            <Route path="/:username" element={<User />} />
           </Route>
 
           <Route path="/mockman" element={<MockAPI />} />

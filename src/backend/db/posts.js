@@ -120,11 +120,10 @@ export const posts = [
   },
   {
     _id: uuid(),
-    firstName: "Hashibira",
-    lastName: " Inosuke",
-    username: "hashibirainosuke",
-    profilePhoto:
-      "https://i.pinimg.com/564x/e3/95/5c/e3955c17a8caed3eb0ec2e27dd71786b.jpg",
+    firstName: "Zenitsu ",
+    lastName: "Agatsuma",
+    username: "zenitsuagatsuma",
+    profilePhoto: "https://cdn.myanimelist.net/images/characters/6/384253.jpg",
     content: "It's not about going first. It's about the overall flow.",
     likes: {
       likeCount: 0,
