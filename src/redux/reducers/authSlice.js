@@ -5,7 +5,6 @@ const initialState = {
   user: null,
   token: null,
 };
-localStorage.setItem("flashToken", "123");
 
 export const login = createAsyncThunk("auth/login", async (loginDetails) => {
   try {
@@ -53,7 +52,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 export const verify = createAsyncThunk(
   "auth/verify",
   async (arg, { rejectWithValue }) => {
-    const encodedToken = localStorage.getItem("flashToken");
+    const encodedToken = localStorage.getItem("flashConnectToken");
     try {
       const response = await axios.post(
         "/api/auth/verify",

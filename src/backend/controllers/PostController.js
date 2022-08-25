@@ -156,7 +156,6 @@ export const editPostHandler = function (schema, request) {
 
 export const likePostHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  console.log("user", user);
   try {
     if (!user) {
       return new Response(
@@ -170,9 +169,9 @@ export const likePostHandler = function (schema, request) {
       );
     }
     const postId = request.params.postId;
-
     const post = schema.posts.findBy({ _id: postId }).attrs;
 
+    console.log("yaaa baaa daba doooooooo", post);
     if (
       post.likes.likedBy.some((currUser) => currUser.username === user.username)
     ) {
