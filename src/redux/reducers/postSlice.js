@@ -70,7 +70,25 @@ export const dislikePost = createAsyncThunk(
   }
 );
 
-// export const postComment =
+export const postComment = createAsyncThunk(
+  "posts/postComment",
+  async (id, { rejectWithValue }) => {
+    try {
+      const encodedToken = localStorage.getItem("flashConnectToken");
+      console.log(encodedToken);
+      const response = await axios.post(
+        `/api/comment/${id}`,
+        {
+          // commentData
+        },
+        { headers: { authorization: encodedToken } }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(`${error.response.data.errors}`);
+    }
+  }
+);
 
 export const postSlice = createSlice({
   name: "posts",
@@ -100,6 +118,16 @@ export const postSlice = createSlice({
       })
       .addCase(dislikePost.rejected, (state, action) => {
         console.log(" DIASLIKE rejected");
+      })
+
+      .addCase(postComment.pending, (state, action) => {
+        console.log("wait");
+      })
+      .addCase(postComment.fulfilled, (state, action) => {
+        state.posts = action.payload.posts;
+      })
+      .addCase(postComment.rejected, (state, action) => {
+        console.log("LIKE rejected");
       });
   },
 });

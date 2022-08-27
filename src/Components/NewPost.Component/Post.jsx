@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { likePost, dislikePost } from "../../redux/reducers/postSlice";
 
 export const Post = ({ post }) => {
+  console.log(post);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   let isPostLikedByUser = post.likes.likedBy?.some(
@@ -53,10 +54,12 @@ export const Post = ({ post }) => {
                 {isPostLikedByUser ? <AiFillHeart /> : <AiOutlineHeart />}
                 {post.likes.likeCount}
               </li>
-              <li className="comment-option cursor">
-                <GoComment />
-                {post.comments.length}
-              </li>
+              <Link to={`/${user.username}/${post._id}}`}>
+                <li className="comment-option cursor">
+                  <GoComment />
+                  {post.comments.length}
+                </li>
+              </Link>
               <li className="comment-option cursor">
                 <AiOutlineShareAlt />
               </li>
