@@ -54,7 +54,7 @@ export const Post = ({ post }) => {
                 {isPostLikedByUser ? <AiFillHeart /> : <AiOutlineHeart />}
                 {post.likes.likeCount}
               </li>
-              <Link to={`/${user.username}/${post._id}}`}>
+              <Link to={`/${user.username}/${post._id}`}>
                 <li className="comment-option cursor">
                   <GoComment />
                   {post.comments.length}
