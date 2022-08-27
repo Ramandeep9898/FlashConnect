@@ -28,4 +28,13 @@
 :root {
   --headingColorblack: #ICIE21;
   --post-gray-bg: #6067701a;
+  --grey-text: #0000008a;
+}
+.grey-color {
+  color: var(--grey-text);
+  line-height: 1;
+}
+.gap {
+  display: flex;
+  gap: 10px;
 }

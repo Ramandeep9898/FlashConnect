@@ -3,9 +3,8 @@ import axios from "axios";
 const initialState = {
   // loading: false,
   user: null,
-  // token: null,
+  token: null,
 };
-localStorage.setItem("flashToken", "123");
 
 export const login = createAsyncThunk("auth/login", async (loginDetails) => {
   try {
@@ -35,28 +34,10 @@ export const signUp = createAsyncThunk("auth/sign", async (signupDetails) => {
   }
 });
 
-// export const signUp = createAsyncThunk(
-//   "auth/signup",
-//   async (signupDetails, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.post(`/api/auth/login`, {
-//         username: signupDetails.username,
-//         password: signupDetails.password,
-//         lastname: signupDetails.lastname,
-//         email: signupDetails.email,
-//         password: signupDetails.password,
-//       });
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
-
 export const testLogin = createAsyncThunk("auth/testLogin", async () => {
   try {
     const response = await axios.post("/api/auth/login", {
-      username: "Nezuko Kamado",
+      username: "nezukokamado",
       password: "Nezuko@1234",
     });
     return response.data;
@@ -71,7 +52,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 export const verify = createAsyncThunk(
   "auth/verify",
   async (arg, { rejectWithValue }) => {
-    const encodedToken = localStorage.getItem("flashToken");
+    const encodedToken = localStorage.getItem("flashConnectToken");
     try {
       const response = await axios.post(
         "/api/auth/verify",
@@ -99,8 +80,10 @@ export const authSlice = createSlice({
         console.log("pending");
       })
       .addCase(login.fulfilled, (state, action) => {
+        localStorage.setItem("flashConnectToken", action.payload.encodedToken);
         state.user = action.payload.foundUser;
         console.log("login done");
+        state.token = action.payload.encodedToken;
       })
       .addCase(login.rejected, (state, action) => {
         console.log("login failed");
@@ -108,17 +91,19 @@ export const authSlice = createSlice({
 
       .addCase(testLogin.fulfilled, (state, action) => {
         console.log(action);
+        localStorage.setItem("flashConnectToken", action.payload.encodedToken);
         state.user = action.payload.foundUser;
+        state.token = action.payload.encodedToken;
         console.log("Login Successful");
       })
       .addCase(testLogin.rejected, (state, action) => {
         console.log("testLoginrejected");
       })
       .addCase(signUp.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.user = action.payload.createdUser;
-          console.log("Signup Successful");
-        }
+        localStorage.setItem("flashConnectToken", action.payload.encodedToken);
+        state.token = action.payload.encodedToken;
+        state.user = action.payload.createdUser;
+        console.log("Signup Successful");
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = null;

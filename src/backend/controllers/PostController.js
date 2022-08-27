@@ -12,6 +12,7 @@ import { v4 as uuid } from "uuid";
  * */
 
 export const getAllpostsHandler = function () {
+  console.log("hi");
   return new Response(200, {}, { posts: this.db.posts });
 };
 
@@ -169,19 +170,28 @@ export const likePostHandler = function (schema, request) {
     }
     const postId = request.params.postId;
     const post = schema.posts.findBy({ _id: postId }).attrs;
-    if (post.likes.likedBy.some((currUser) => currUser._id === user._id)) {
+
+    console.log("yaaa baaa daba doooooooo", post);
+    if (
+      post.likes.likedBy.some((currUser) => currUser.username === user.username)
+    ) {
       return new Response(
         400,
         {},
         { errors: ["Cannot like a post that is already liked. "] }
       );
     }
+
     post.likes.dislikedBy = post.likes.dislikedBy.filter(
-      (currUser) => currUser._id !== user._id
+      (currUser) => currUser.username !== user.username
     );
+
     post.likes.likeCount += 1;
+
     post.likes.likedBy.push(user);
+
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
