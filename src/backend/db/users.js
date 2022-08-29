@@ -24,7 +24,7 @@ export const users = [
     following: [
       {
         _id: uuid(),
-        firstName: "Tnjiro ",
+        firstName: "Tnjiro",
         lastName: "Kamado",
         username: "tnjirokamado",
         profilePhoto:

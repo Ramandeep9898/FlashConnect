@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   users: [],
   profileUserPosts: [],
-  // profileUser: [],
+  profileUser: [],
 };
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
@@ -40,6 +40,39 @@ export const getUserPost = createAsyncThunk(
   }
 );
 
+export const follow = createAsyncThunk(
+  "user/followUser",
+  async (followUserId, { rejectWithValue }) => {
+    try {
+      const encodedToken = localStorage.getItem("flashConnectToken");
+      const response = await axios.post(
+        `/api/users/follow/${followUserId}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      return response.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+
+export const unfollow = createAsyncThunk(
+  "user/unfollowUser",
+  async (unfollowUserId, { rejectWithValue }) => {
+    try {
+      const encodedToken = localStorage.getItem("flashConnectToken");
+      const response = await axios.post(
+        `/api/users/unfollow/${unfollowUserId}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      return response.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
 export const userSlice = createSlice({
   name: "users",
   initialState,
@@ -87,8 +120,9 @@ export const userSlice = createSlice({
         console.log("loading");
       })
       .addCase(unfollow.fulfilled, (state, action) => {
-        console.log(action.payload);
+        console.log(action);
         const { user, followUser } = action.payload;
+
         state.users = state.users.map((item) =>
           item.username === user.username ? user : item
         );
