@@ -12,6 +12,7 @@ import { User } from "./Components/User.Component/User";
 import { getUsers } from "./redux/reducers/userSlice";
 import { getPost } from "./redux/reducers/postSlice";
 import { verify } from "./redux/reducers/authSlice";
+import { Explore } from "./pages/Explore";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/:username" element={<User />} />
             <Route path="/:username/:postId" element={<Comment />} />
+            <Route path="/explore" element={<Explore />} />
           </Route>
 
           <Route path="/mockman" element={<MockAPI />} />

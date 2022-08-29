@@ -22,7 +22,7 @@ export const getUser = createAsyncThunk(
       const response = await axios.get(`/api/users/${username}`);
       return response.data;
     } catch (error) {
-      return rejectWithValue(`${error.response.data.errors}`);
+      return rejectWithValue(error);
     }
   }
 );
@@ -73,13 +73,13 @@ export const unfollow = createAsyncThunk(
     }
   }
 );
+
 export const userSlice = createSlice({
   name: "users",
   initialState,
   extraReducers(builder) {
     builder
       .addCase(getUsers.pending, (state) => {
-        //   state.loading = true;
         console.log("loading");
       })
       .addCase(getUsers.fulfilled, (state, action) => {
@@ -87,7 +87,6 @@ export const userSlice = createSlice({
         state.users = action.payload.users;
       })
       .addCase(getUser.pending, (state) => {
-        //   state.loading = true;
         console.log("loading");
       })
       .addCase(getUser.fulfilled, (state, action) => {
@@ -95,7 +94,6 @@ export const userSlice = createSlice({
         state.users = action.payload.users;
       })
       .addCase(getUserPost.pending, (state) => {
-        //   state.loading = true;
         console.log("loading");
       })
       .addCase(getUserPost.fulfilled, (state, action) => {
@@ -120,7 +118,7 @@ export const userSlice = createSlice({
         console.log("loading");
       })
       .addCase(unfollow.fulfilled, (state, action) => {
-        console.log(action);
+        console.log(action.payload);
         const { user, followUser } = action.payload;
 
         state.users = state.users.map((item) =>

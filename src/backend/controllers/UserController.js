@@ -217,7 +217,7 @@ export const followUserHandler = function (schema, request) {
       );
     }
     const isFollowing = user.following.some(
-      (currUser) => currUser._id === followUser._id
+      (currUser) => currUser.username === followUser.username
     );
 
     if (isFollowing) {

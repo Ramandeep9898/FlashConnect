@@ -21,26 +21,39 @@ export const LeftAside = () => {
       <div className="left-aside-position">
         <nav className="lf-aside">
           <ul className="lf-aside-items">
-            <li className="lf-aside-item mgT-8">
-              <BiHomeSmile />
-              <span>Home</span>
-            </li>
-            <li className="lf-aside-item mgT-8">
-              <MdOutlineTravelExplore />
-              <span>Explore</span>
-            </li>
-            <li className="lf-aside-item mgT-8">
-              <BiBookmark />
-              <span>Bookmarks</span>
-            </li>
+            <Link to="/home">
+              <li className="lf-aside-item mgT-8">
+                <BiHomeSmile />
+                <span>Home</span>
+              </li>
+            </Link>
+
+            <Link to="/explore">
+              <li className="lf-aside-item mgT-8">
+                <MdOutlineTravelExplore />
+                <span>Explore</span>
+              </li>
+            </Link>
+
+            <Link to="/bookmarks">
+              <li className="lf-aside-item mgT-8">
+                <BiBookmark />
+                <span>Bookmarks</span>
+              </li>
+            </Link>
+
             <li className="lf-aside-item mgT-8">
               <RiNotificationLine />
               <span>Notification</span>
             </li>
-            <li className="lf-aside-item mgT-8">
-              <CgProfile />
-              <span>Profile</span>
-            </li>
+
+            <Link to={`/${loginDetails?.username}`}>
+              <li className="lf-aside-item mgT-8">
+                <CgProfile />
+                <span>Profile</span>
+              </li>
+            </Link>
+
             <Link to="/home">
               <li className="lf-aside-item mgT-8">
                 <button className="btn bg-pur width100">Create New Post</button>
