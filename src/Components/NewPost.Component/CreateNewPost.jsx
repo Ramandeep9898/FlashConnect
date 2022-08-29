@@ -35,7 +35,10 @@ export const CreateNewPost = () => {
           </div>
           <div className="textarea-container">
             <textarea
+              rows="5"
+              cols="24"
               type="text"
+              maxLength="150"
               className="textarea"
               placeholder="Tell me what's on your mind..."
               value={postDetails.postContent}

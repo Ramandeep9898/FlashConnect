@@ -6,7 +6,7 @@ import { LeftAside } from "../LeftAside.Component/LeftAside";
 import { RightAside } from "../RightAside.component/RightAside";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getUserPost } from "../../redux/reducers/userSlice";
+import { getUserPost, follow, unfollow } from "../../redux/reducers/userSlice";
 import { Post } from "../NewPost.Component/Post";
 
 export const User = () => {
@@ -95,6 +95,14 @@ export const User = () => {
                     <button className="btn bg-pur ">
                       <FiShare2 />
                     </button>
+                    {logindetails.username !== profileUser.username ? (
+                      <button
+                        className="btn bg-pur "
+                        onClick={() => dispatch(follow(profileUser._id))}
+                      >
+                        follow
+                      </button>
+                    ) : null}
                     {logindetails?.username === profileUser?.username ? (
                       <div className="gap">
                         <button className="btn bg-pur">
