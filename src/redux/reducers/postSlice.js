@@ -3,6 +3,7 @@ import axios from "axios";
 import { Action } from "history";
 const initialState = {
   posts: [],
+  bookmarks: [],
 };
 
 export const getPost = createAsyncThunk(
@@ -89,6 +90,36 @@ export const postComment = createAsyncThunk(
     }
   }
 );
+
+export const getBookmarks = createAsyncThunk(
+  "post/bookmarks",
+  async (id, { rejectWithValue }) => {
+    try {
+      const encodedToken = localStorage.getItem("flashConnectToken");
+      const response = await axios.get(`/api/user/bookmarks`, {
+        headers: { authorization: encodedToken },
+      });
+      return response.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+
+// export const addToBookmarks = createAsyncThunk(
+//   "post/bookmarks",
+//   async (id, { rejectWithValue }) => {
+//     try {
+//       const encodedToken = localStorage.getItem("flashConnectToken");
+//       const response = await axios.get(`/api/user/bookmarks`, {
+//         headers: { authorization: encodedToken },
+//       });
+//       return response.data;
+//     } catch (error) {
+//       return console.log(error);
+//     }
+//   }
+// );
 
 export const postSlice = createSlice({
   name: "posts",

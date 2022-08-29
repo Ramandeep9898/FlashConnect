@@ -10,7 +10,7 @@ export const users = [
     _id: uuid(),
     firstName: "Nezuko",
     lastName: "Kamado",
-    username: "nezukokamado",
+    username: "nezukokamado55",
     profilePhoto:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3Kh6YvZZ0MV-fiOWzjRgQWCQGJbZFM45RcA&usqp=CAU",
     coverPhoto:
