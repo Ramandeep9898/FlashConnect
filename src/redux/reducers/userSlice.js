@@ -68,6 +68,34 @@ export const userSlice = createSlice({
       .addCase(getUserPost.fulfilled, (state, action) => {
         console.log("userpost");
         state.profileUserPosts = action.payload.posts;
+      })
+      .addCase(follow.pending, (state) => {
+        console.log("loading");
+      })
+      .addCase(follow.fulfilled, (state, action) => {
+        console.log(action.payload);
+        const { user, followUser } = action.payload;
+        state.users = state.users.map((item) =>
+          item.username === user.username ? user : item
+        );
+        state.users = state.users.map((item) =>
+          item.username === followUser.username ? followUser : item
+        );
+        state.profileUser = action.payload.followUser;
+      })
+      .addCase(unfollow.pending, (state) => {
+        console.log("loading");
+      })
+      .addCase(unfollow.fulfilled, (state, action) => {
+        console.log(action.payload);
+        const { user, followUser } = action.payload;
+        state.users = state.users.map((item) =>
+          item.username === user.username ? user : item
+        );
+        state.users = state.users.map((item) =>
+          item.username === followUser.username ? followUser : item
+        );
+        state.profileUser = action.payload.followUser;
       });
   },
 });
