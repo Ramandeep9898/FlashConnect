@@ -1,6 +1,5 @@
 import React from "react";
 import "./right-aside.css";
-import img from "./60111.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { follow } from "../../redux/reducers/userSlice";
