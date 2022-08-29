@@ -63,7 +63,7 @@ export const unfollow = createAsyncThunk(
     try {
       const encodedToken = localStorage.getItem("flashConnectToken");
       const response = await axios.post(
-        `/api/users/follow/${unfollowUserId}`,
+        `/api/users/unfollow/${unfollowUserId}`,
         {},
         { headers: { authorization: encodedToken } }
       );
@@ -120,6 +120,7 @@ export const userSlice = createSlice({
       .addCase(unfollow.fulfilled, (state, action) => {
         console.log(action.payload);
         const { user, followUser } = action.payload;
+
         state.users = state.users.map((item) =>
           item.username === user.username ? user : item
         );
