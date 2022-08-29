@@ -30,8 +30,8 @@ export const User = () => {
   const followingCurrentUser = logindetails?.following.some(
     (user) => user.username === profileUser?.username
   );
-  console.log(logindetails.following);
-  console.log(profileUser);
+  console.log("users", allUser);
+  // console.log(profileUser);
 
   console.log("followingCurrentUser", followingCurrentUser);
 

@@ -11,14 +11,14 @@ import { formatDate, requiresAuth } from "../utils/authUtils";
  * */
 
 export const getAllUsersHandler = function () {
-  console.log("yo");
+  console.log("yo", this.db.users);
   return new Response(200, {}, { users: this.db.users });
 };
 
 /**
  * This handler handles get a user from userId in the db.
  * send GET Request at /api/users/:userId
- * */
+ **/
 
 export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
