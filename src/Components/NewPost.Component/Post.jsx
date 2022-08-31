@@ -3,22 +3,32 @@ import "./new-post.css";
 import "../Comment.Component/comment.css";
 import { AiOutlineHeart, AiOutlineShareAlt, AiFillHeart } from "react-icons/ai";
 import { GoComment } from "react-icons/go";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { likePost, dislikePost } from "../../redux/reducers/postSlice";
-import { addToBookmarks } from "../../redux/reducers/postSlice";
+import {
+  addToBookmarks,
+  removeFromBookmarks,
+} from "../../redux/reducers/postSlice";
 
 export const Post = ({ post }) => {
   console.log(post);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const bookmarks = useSelector((state) => state.posts.bookmarks);
   let isPostLikedByUser = post.likes.likedBy?.some(
     (item) => item.username === user.username
   )
     ? true
     : false;
-  console.log(isPostLikedByUser);
+  console.log(bookmarks);
+
+  const isPostBookmarkedByLoginUser = bookmarks.some(
+    (item) => item === post._id
+  )
+    ? true
+    : false;
   return (
     <>
       <div className="new-post">
@@ -66,9 +76,19 @@ export const Post = ({ post }) => {
               </li>
               <li
                 className="comment-option cursor"
-                onClick={() => dispatch(addToBookmarks(post._id))}
+                onClick={() => {
+                  if (isPostBookmarkedByLoginUser) {
+                    dispatch(removeFromBookmarks(post._id));
+                  } else {
+                    dispatch(addToBookmarks(post._id));
+                  }
+                }}
               >
-                <BsBookmark />
+                {isPostBookmarkedByLoginUser ? (
+                  <BsBookmarkFill />
+                ) : (
+                  <BsBookmark />
+                )}
               </li>
             </ul>
           </div>

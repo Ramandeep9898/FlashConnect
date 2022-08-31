@@ -128,7 +128,7 @@ export const removeFromBookmarks = createAsyncThunk(
     try {
       const encodedToken = localStorage.getItem("flashConnectToken");
       const response = await axios.post(
-        `/api/user/remove-bookmark/${postId}`,
+        `/api/users/remove-bookmark/${postId}`,
         {},
         {
           headers: { authorization: encodedToken },
@@ -180,13 +180,35 @@ export const postSlice = createSlice({
         console.log("LIKE rejected");
       })
 
+      // .addCase(getBookmarks.pending, (state, action) => {
+      //   console.log("wait");
+      // })
+      // .addCase(getBookmarks.fulfilled, (state, action) => {
+      //   state.bookmarks = action.payload.bookmarks;
+      // })
+      // .addCase(getBookmarks.rejected, (state, action) => {
+      //   console.log("LIKE rejected");
+      // })
+
       .addCase(getBookmarks.pending, (state, action) => {
         console.log("wait");
       })
-      .addCase(getBookmarks.fulfilled, (state, action) => {
-        state.posts = action.payload.posts;
+
+      .addCase(addToBookmarks.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.bookmarks = action.payload.bookmarks;
+        console.log(state.bookmarks);
       })
-      .addCase(getBookmarks.rejected, (state, action) => {
+      .addCase(addToBookmarks.rejected, (state, action) => {
+        console.log("LIKE rejected");
+      })
+      .addCase(removeFromBookmarks.pending, (state, action) => {
+        console.log("wait");
+      })
+      .addCase(removeFromBookmarks.fulfilled, (state, action) => {
+        state.bookmarks = action.payload.bookmarks;
+      })
+      .addCase(removeFromBookmarks.rejected, (state, action) => {
         console.log("LIKE rejected");
       });
   },
