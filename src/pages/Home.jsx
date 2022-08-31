@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 export const Home = () => {
   const posts = useSelector((state) => state.posts.posts);
-  console.log("post", posts);
+
   return (
     <>
       <div className="header-position">

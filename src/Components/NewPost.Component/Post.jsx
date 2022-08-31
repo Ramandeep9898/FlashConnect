@@ -13,7 +13,6 @@ import {
 } from "../../redux/reducers/postSlice";
 
 export const Post = ({ post }) => {
-  console.log(post);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const bookmarks = useSelector((state) => state.posts.bookmarks);
@@ -22,7 +21,6 @@ export const Post = ({ post }) => {
   )
     ? true
     : false;
-  console.log(bookmarks);
 
   const isPostBookmarkedByLoginUser = bookmarks.some(
     (item) => item === post._id

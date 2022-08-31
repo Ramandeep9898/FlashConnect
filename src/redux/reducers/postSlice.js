@@ -4,6 +4,7 @@ import { Action } from "history";
 const initialState = {
   posts: [],
   bookmarks: [],
+  comments: [],
 };
 
 export const getPost = createAsyncThunk(
@@ -73,24 +74,39 @@ export const dislikePost = createAsyncThunk(
 
 export const postComment = createAsyncThunk(
   "posts/postComment",
-  async (id, { rejectWithValue }) => {
+  async ({ postId, commentData }, { rejectWithValue }) => {
     try {
       const encodedToken = localStorage.getItem("flashConnectToken");
-      console.log(encodedToken);
+
       const response = await axios.post(
-        `/api/comment/${id}`,
-        {
-          // commentData
-        },
+        `/api/comments/add/${postId}`,
+        { commentData },
         { headers: { authorization: encodedToken } }
       );
       return response.data;
     } catch (error) {
-      return rejectWithValue(`${error.response.data.errors}`);
+      return console.log(error.message);
     }
   }
 );
 
+export const deleteComment = createAsyncThunk(
+  "posts/deleteComment",
+  async ({ postId, commentId }, { rejectWithValue }) => {
+    try {
+      const encodedToken = localStorage.getItem("flashConnectToken");
+
+      const response = await axios.post(
+        `/api/comments/delete/${postId}/${commentId}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      return response.data;
+    } catch (error) {
+      return console.log(error.message);
+    }
+  }
+);
 export const getBookmarks = createAsyncThunk("posts/getBookmarks", async () => {
   try {
     const encodedToken = localStorage.getItem("flashConnectToken");

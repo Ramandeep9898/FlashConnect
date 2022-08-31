@@ -25,7 +25,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        firstName: "Zenitsu ",
+        lastName: "Agatsuma",
         username: "zenitsuagatsuma",
+        profilePhoto:
+          "https://cdn.myanimelist.net/images/characters/6/384253.jpg",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -34,7 +38,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        firstName: "Kanao",
+        lastName: "Tsuyuri",
+        username: "kanaotsuyuri",
+        profilePhoto:
+          "https://i.pinimg.com/736x/41/26/e1/4126e16dcbaec8c256938a69ea6aac9a.jpg",
         text: "Wow!",
         votes: {
           upvotedBy: [],
