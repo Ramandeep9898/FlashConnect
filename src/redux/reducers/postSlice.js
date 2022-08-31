@@ -196,15 +196,15 @@ export const postSlice = createSlice({
         console.log("LIKE rejected");
       })
 
-      // .addCase(getBookmarks.pending, (state, action) => {
-      //   console.log("wait");
-      // })
-      // .addCase(getBookmarks.fulfilled, (state, action) => {
-      //   state.bookmarks = action.payload.bookmarks;
-      // })
-      // .addCase(getBookmarks.rejected, (state, action) => {
-      //   console.log("LIKE rejected");
-      // })
+      .addCase(deleteComment.pending, (state, action) => {
+        console.log("wait");
+      })
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        state.posts = action.payload.posts;
+      })
+      .addCase(deleteComment.rejected, (state, action) => {
+        console.log("LIKE rejected");
+      })
 
       .addCase(getBookmarks.pending, (state, action) => {
         console.log("wait");

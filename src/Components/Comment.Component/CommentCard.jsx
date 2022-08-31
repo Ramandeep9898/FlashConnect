@@ -10,8 +10,9 @@ import { GoComment } from "react-icons/go";
 import { BsBookmark } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { deleteComment } from "../../redux/reducers/postSlice";
 
-export const CommentCard = ({ comments, replyingTo }) => {
+export const CommentCard = ({ comments, replyingTo, postId }) => {
   const user = useSelector((state) => state.auth.user);
   const isCurrentPostUserLogined = user.username === replyingTo ? true : false;
   const dispatch = useDispatch();
@@ -53,7 +54,12 @@ export const CommentCard = ({ comments, replyingTo }) => {
                 <AiOutlineShareAlt />
               </li>
 
-              <li className="comment-option cursor" onClick={() => dispatch()}>
+              <li
+                className="comment-option cursor"
+                onClick={() =>
+                  dispatch(deleteComment({ postId, commentId: comments._id }))
+                }
+              >
                 {isCurrentPostUserLogined ? <AiOutlineDelete /> : null}
               </li>
             </ul>

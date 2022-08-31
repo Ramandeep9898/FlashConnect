@@ -55,7 +55,11 @@ export const Comment = () => {
           </div>
 
           {comments.map((comments) => (
-            <CommentCard comments={comments} replyingTo={replyingTo} />
+            <CommentCard
+              comments={comments}
+              replyingTo={replyingTo}
+              postId={postId}
+            />
           ))}
         </div>
         <div className="right-aside">
