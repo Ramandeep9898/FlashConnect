@@ -30,8 +30,7 @@ export const User = () => {
   const followingCurrentUser = logindetails?.following.some(
     (user) => user.username === profileUser?.username
   );
-  console.log("users", allUser);
-  // console.log(profileUser);
+
 
   console.log("followingCurrentUser", followingCurrentUser);
 
@@ -106,6 +105,8 @@ export const User = () => {
                     {logindetails.username !== profileUser.username ? (
                       <button
                         className="btn bg-pur "
+
+
                         onClick={() => {
                           followingCurrentUser
                             ? dispatch(unfollow(profileUser._id))

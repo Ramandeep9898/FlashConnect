@@ -7,6 +7,7 @@ import { BsBookmark } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { likePost, dislikePost } from "../../redux/reducers/postSlice";
+import { addToBookmarks } from "../../redux/reducers/postSlice";
 
 export const Post = ({ post }) => {
   console.log(post);
@@ -63,7 +64,10 @@ export const Post = ({ post }) => {
               <li className="comment-option cursor">
                 <AiOutlineShareAlt />
               </li>
-              <li className="comment-option cursor">
+              <li
+                className="comment-option cursor"
+                onClick={() => dispatch(addToBookmarks(post._id))}
+              >
                 <BsBookmark />
               </li>
             </ul>
