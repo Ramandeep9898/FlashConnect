@@ -1,6 +1,5 @@
 import React from "react";
 import "./left-aside.css";
-import img from "./60111.jpg";
 import { BiHomeSmile, BiBookmark } from "react-icons/bi";
 import { MdOutlineTravelExplore } from "react-icons/md";
 import { RiNotificationLine } from "react-icons/ri";
@@ -8,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducers/authSlice";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const LeftAside = () => {
   const user = useSelector((state) => state.auth.user);
@@ -21,31 +20,49 @@ export const LeftAside = () => {
       <div className="left-aside-position">
         <nav className="lf-aside">
           <ul className="lf-aside-items">
-            <li className="lf-aside-item mgT-8">
-              <BiHomeSmile />
-              <span>Home</span>
-            </li>
-            <li className="lf-aside-item mgT-8">
-              <MdOutlineTravelExplore />
-              <span>Explore</span>
-            </li>
-            <li className="lf-aside-item mgT-8">
-              <BiBookmark />
-              <span>Bookmarks</span>
-            </li>
-            <li className="lf-aside-item mgT-8">
+            <NavLink to="/home">
+              <li className="lf-aside-item mgT-8">
+                <BiHomeSmile />
+                <span>Home</span>
+              </li>
+            </NavLink>
+
+            <NavLink to="/explore">
+              <li className="lf-aside-item mgT-8">
+                <MdOutlineTravelExplore />
+                <span>Explore</span>
+              </li>
+            </NavLink>
+
+            <NavLink to="/bookmarks">
+              <li className="lf-aside-item mgT-8">
+                <BiBookmark />
+                <span>Bookmarks</span>
+              </li>
+            </NavLink>
+
+            {/* <li className="lf-aside-item mgT-8">
               <RiNotificationLine />
               <span>Notification</span>
-            </li>
-            <li className="lf-aside-item mgT-8">
-              <CgProfile />
-              <span>Profile</span>
-            </li>
-            <Link to="/home">
+            </li> */}
+
+            <NavLink
+              to={`/${loginDetails?.username}`}
+              className={(isActive) =>
+                "activeLink" + (!isActive ? "inactiveLink" : "")
+              }
+            >
+              <li className="lf-aside-item mgT-8">
+                <CgProfile />
+                <span>Profile</span>
+              </li>
+            </NavLink>
+
+            <NavLink to="/home">
               <li className="lf-aside-item mgT-8">
                 <button className="btn bg-pur width100">Create New Post</button>
               </li>
-            </Link>
+            </NavLink>
           </ul>
           <div className="profile">
             <ul class="list border displayF space-between ppl-yk mgT-16">
