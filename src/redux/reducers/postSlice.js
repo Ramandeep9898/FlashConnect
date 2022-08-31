@@ -91,14 +91,30 @@ export const postComment = createAsyncThunk(
   }
 );
 
-export const getBookmarks = createAsyncThunk(
-  "post/bookmarks",
-  async (id, { rejectWithValue }) => {
+export const getBookmarks = createAsyncThunk("posts/getBookmarks", async () => {
+  try {
+    const encodedToken = localStorage.getItem("flashConnectToken");
+    const response = await axios.get("/api/users/bookmark", {
+      headers: { authorization: encodedToken },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const addToBookmarks = createAsyncThunk(
+  "post/addToBookmarks",
+  async (postId, { rejectWithValue }) => {
     try {
       const encodedToken = localStorage.getItem("flashConnectToken");
-      const response = await axios.get(`/api/user/bookmarks`, {
-        headers: { authorization: encodedToken },
-      });
+      const response = await axios.post(
+        `/api/users/bookmark/${postId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
       return response.data;
     } catch (error) {
       return console.log(error);
@@ -106,21 +122,24 @@ export const getBookmarks = createAsyncThunk(
   }
 );
 
-// export const addToBookmarks = createAsyncThunk(
-//   "post/bookmarks",
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       const encodedToken = localStorage.getItem("flashConnectToken");
-//       const response = await axios.get(`/api/user/bookmarks`, {
-//         headers: { authorization: encodedToken },
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return console.log(error);
-//     }
-//   }
-// );
-
+export const removeFromBookmarks = createAsyncThunk(
+  "post/removeFromBookmarks",
+  async (postId, { rejectWithValue }) => {
+    try {
+      const encodedToken = localStorage.getItem("flashConnectToken");
+      const response = await axios.post(
+        `/api/user/remove-bookmark/${postId}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
 export const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -158,6 +177,16 @@ export const postSlice = createSlice({
         state.posts = action.payload.posts;
       })
       .addCase(postComment.rejected, (state, action) => {
+        console.log("LIKE rejected");
+      })
+
+      .addCase(getBookmarks.pending, (state, action) => {
+        console.log("wait");
+      })
+      .addCase(getBookmarks.fulfilled, (state, action) => {
+        state.posts = action.payload.posts;
+      })
+      .addCase(getBookmarks.rejected, (state, action) => {
         console.log("LIKE rejected");
       });
   },

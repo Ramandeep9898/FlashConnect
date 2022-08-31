@@ -6,7 +6,7 @@ import { LeftAside } from "../LeftAside.Component/LeftAside";
 import { RightAside } from "../RightAside.component/RightAside";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getUserPost, follow, unfollow } from "../../redux/reducers/userSlice";
+import { getUserPost } from "../../redux/reducers/userSlice";
 import { Post } from "../NewPost.Component/Post";
 
 export const User = () => {
@@ -106,11 +106,11 @@ export const User = () => {
                     {logindetails.username !== profileUser.username ? (
                       <button
                         className="btn bg-pur "
-                        onClick={() => {
-                          followingCurrentUser
-                            ? dispatch(unfollow(profileUser._id))
-                            : dispatch(follow(profileUser._id));
-                        }}
+                        // onClick={() => {
+                        //   followingCurrentUser
+                        //     ? dispatch(unfollow(profileUser._id))
+                        //     : dispatch(follow(profileUser._id));
+                        // }}
                       >
                         {followingCurrentUser ? "following" : "follow"}
                       </button>
