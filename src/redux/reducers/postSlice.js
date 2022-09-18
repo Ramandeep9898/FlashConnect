@@ -21,17 +21,23 @@ export const getPost = createAsyncThunk(
 );
 
 export const createPost = createAsyncThunk(
-  "post/createPost",
+  "posts/createPost",
   async (post, { rejectWithValue }) => {
+    const encodedToken = localStorage.getItem("flashConnectToken");
+
     try {
-      const response = await axios.post("/api/posts", { postData: post });
-      return console.log(response.data);
+      const response = await axios.post(
+        "/api/posts/",
+        { postData: post },
+        { headers: { authorization: encodedToken } }
+      );
+
+      return response.data;
     } catch (error) {
-      return rejectWithValue(`${error.response.data.errors}`);
+      return console.log(error);
     }
   }
 );
-
 export const likePost = createAsyncThunk(
   "posts/like",
   async (id, { rejectWithValue }) => {
@@ -156,6 +162,7 @@ export const removeFromBookmarks = createAsyncThunk(
     }
   }
 );
+
 export const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -170,6 +177,18 @@ export const postSlice = createSlice({
       .addCase(getPost.rejected, (state, action) => {
         console.log("rejected");
       })
+
+      .addCase(createPost.pending, (state, action) => {
+        console.log("wait");
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        console.log("done");
+        state.posts = action.payload.posts;
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        console.log("LIKE rejected");
+      })
+
       .addCase(likePost.pending, (state, action) => {
         console.log("wait");
       })
