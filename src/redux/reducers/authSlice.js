@@ -26,7 +26,6 @@ export const signUp = createAsyncThunk("auth/sign", async (signupDetails) => {
       password: signupDetails.password,
       lastname: signupDetails.lastname,
       email: signupDetails.email,
-      password: signupDetails.password,
     });
     return response.data;
   } catch (error) {

@@ -8,14 +8,11 @@ import { Header } from "../Header.Component/header";
 import { LeftAside } from "../LeftAside.Component/LeftAside";
 import { RightAside } from "../RightAside.component/RightAside";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Post } from "../NewPost.Component/Post";
+import { useSelector } from "react-redux";
 
 export const Comment = () => {
   const { postId } = useParams();
-  const user = useSelector((state) => state.auth.user);
   const allPosts = useSelector((state) => state.posts.posts);
-  const currentPost = allPosts.find((item) => item._id === postId);
   console.log(allPosts._id);
   console.log(allPosts);
   console.log(postId);

@@ -2,7 +2,6 @@ import React from "react";
 import "./left-aside.css";
 import { BiHomeSmile, BiBookmark } from "react-icons/bi";
 import { MdOutlineTravelExplore } from "react-icons/md";
-import { RiNotificationLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";

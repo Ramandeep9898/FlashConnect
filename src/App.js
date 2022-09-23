@@ -11,7 +11,6 @@ import MockAPI from "./Mockman";
 import { User } from "./Components/User.Component/User";
 import { getUsers } from "./redux/reducers/userSlice";
 import { getPost } from "./redux/reducers/postSlice";
-import { verify } from "./redux/reducers/authSlice";
 import { Explore } from "./pages/Explore";
 function App() {
   const dispatch = useDispatch();

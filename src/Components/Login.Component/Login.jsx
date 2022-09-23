@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./login.css";
-import { Link } from "react-router-dom";
 import { login, testLogin } from "../../redux/reducers/authSlice";
 
 const Login = ({ setAuthVal }) => {
@@ -10,13 +9,6 @@ const Login = ({ setAuthVal }) => {
     username: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState({
-    message: "",
-  });
-
-  const emailRegex =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
   // const loginHandler = () => {
   //   if (

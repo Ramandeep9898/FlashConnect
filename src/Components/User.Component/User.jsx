@@ -31,14 +31,13 @@ export const User = () => {
     (user) => user.username === profileUser?.username
   );
 
-
   console.log("followingCurrentUser", followingCurrentUser);
 
   useEffect(() => {
     if (currentUser) {
       dispatch(getUserPost(currentUser.username));
     }
-  }, [currentUser]);
+  }, [dispatch]);
 
   return (
     <>
@@ -105,8 +104,6 @@ export const User = () => {
                     {logindetails.username !== profileUser.username ? (
                       <button
                         className="btn bg-pur "
-
-
                         onClick={() => {
                           followingCurrentUser
                             ? dispatch(unfollow(profileUser._id))

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Action } from "history";
+// import { Action } from "history";
 const initialState = {
   posts: [],
   bookmarks: [],
