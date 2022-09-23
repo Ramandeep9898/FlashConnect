@@ -10,21 +10,6 @@ const Login = ({ setAuthVal }) => {
     password: "",
   });
 
-  // const loginHandler = () => {
-  //   if (
-  //     loginDetails.email.match(emailRegex) &&
-  //     loginDetails.password.match(passwordRegex)
-  //   ) {
-  //     setErrorMessage({
-  //       message: "",
-  //     });
-  //     logInAuth(loginDetails);
-  //   } else {
-  //     setErrorMessage({
-  //       message: "error",
-  //     });
-  //   }
-  // };
   const loginHandler = () => {
     console.log(loginDetails);
     dispatch(login(loginDetails));
@@ -37,7 +22,6 @@ const Login = ({ setAuthVal }) => {
           <div className="login-body">
             <p className="h3 color capitalize fW-700 text-center">login</p>
             <div className="input-box mgT-20">
-              <div>{errorMessage.message}</div>
               <label for="text" className="textarea-label">
                 email
               </label>
