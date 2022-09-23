@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     dispatch(getPost());
     dispatch(getUsers());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <div className="App">
