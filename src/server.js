@@ -4,6 +4,7 @@ import { users } from "./backend/db/users";
 import {
   loginHandler,
   signupHandler,
+  verifyUser,
 } from "./backend/controllers/AuthController";
 import {
   createPostHandler,
@@ -16,14 +17,6 @@ import {
   getAllUserPostsHandler,
 } from "./backend/controllers/PostController";
 import {
-  getPostCommentsHandler,
-  addPostCommentHandler,
-  editPostCommentHandler,
-  deletePostCommentHandler,
-  upvotePostCommentHandler,
-  downvotePostCommentHandler,
-} from "./backend/controllers/CommentsController";
-import {
   followUserHandler,
   getAllUsersHandler,
   getUserHandler,
@@ -33,6 +26,14 @@ import {
   unfollowUserHandler,
   editUserHandler,
 } from "./backend/controllers/UserController";
+import {
+  getPostCommentsHandler,
+  addPostCommentHandler,
+  editPostCommentHandler,
+  deletePostCommentHandler,
+  upvotePostCommentHandler,
+  downvotePostCommentHandler,
+} from "./backend/controllers/CommentsController";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -52,9 +53,6 @@ export function makeServer({ environment = "development" } = {}) {
       users.forEach((item) =>
         server.create("user", {
           ...item,
-          followers: [],
-          following: [],
-          bookmarks: [],
         })
       );
       posts.forEach((item) => server.create("post", { ...item }));
@@ -65,6 +63,7 @@ export function makeServer({ environment = "development" } = {}) {
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
+      // this.post("/auth/verify", verifyUser.bind(this));
 
       // post routes (public)
       this.get("/posts", getAllpostsHandler.bind(this));
@@ -77,7 +76,6 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/posts/edit/:postId", editPostHandler.bind(this));
       this.post("/posts/like/:postId", likePostHandler.bind(this));
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
-
       //post comments routes (public)
       this.get("/comments/:postId", getPostCommentsHandler.bind(this));
 
@@ -99,9 +97,10 @@ export function makeServer({ environment = "development" } = {}) {
         "/comments/downvote/:postId/:commentId",
         downvotePostCommentHandler.bind(this)
       );
+
       // user routes (public)
       this.get("/users", getAllUsersHandler.bind(this));
-      this.get("/users/:userId", getUserHandler.bind(this));
+      this.get("/users/:username", getUserHandler.bind(this));
 
       // user routes (private)
       this.post("users/edit", editUserHandler.bind(this));
@@ -116,6 +115,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+      this.passthrough("https://api.cloudinary.com/**");
     },
   });
 }

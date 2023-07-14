@@ -1,0 +1,51 @@
+.user-info {
+  display: flex;
+  gap: 5px;
+}
+/* .user {
+  font-size: 16px;
+  font-weight: 500;
+} */
+.color-text {
+  font-family: "Poppins", sans-serif;
+
+  color: #764abc;
+}
+.comment-text {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+}
+.user-id {
+  font-size: 18px;
+  line-height: 2rem;
+  color: #918b8b;
+}
+.cursor {
+  cursor: pointer;
+}
+.comment-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-option {
+  font-size: 18px;
+  color: #918b8b;
+}
+.currPostNdcommemt {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  width: -webkit-fill-available;
+}
+.add-comment-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  /* background-color: var(--post-gray-bg); */
+  padding: 16px;
+  border-radius: 8px;
+}

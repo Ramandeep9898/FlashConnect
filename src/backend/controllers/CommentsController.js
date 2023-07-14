@@ -33,6 +33,7 @@ export const getPostCommentsHandler = function (schema, request) {
  * */
 
 export const addPostCommentHandler = function (schema, request) {
+  console.log("yo");
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {
@@ -53,14 +54,18 @@ export const addPostCommentHandler = function (schema, request) {
       _id: uuid(),
       ...commentData,
       username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      profilePhoto: user.profilePhoto,
       votes: { upvotedBy: [], downvotedBy: [] },
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };
     const post = schema.posts.findBy({ _id: postId }).attrs;
     post.comments.push(comment);
+
     this.db.posts.update({ _id: postId }, post);
-    return new Response(201, {}, { comments: post.comments });
+    return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
       500,
@@ -160,7 +165,7 @@ export const deletePostCommentHandler = function (schema, request) {
       (comment) => comment._id !== commentId
     );
     this.db.posts.update({ _id: postId }, post);
-    return new Response(201, {}, { comments: post.comments });
+    return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
       500,
@@ -171,7 +176,6 @@ export const deletePostCommentHandler = function (schema, request) {
     );
   }
 };
-
 /**
  * This handler handles upvoting a comment of a post in the db.
  * send POST Request at /api/comments/upvote/:postId/:commentId
