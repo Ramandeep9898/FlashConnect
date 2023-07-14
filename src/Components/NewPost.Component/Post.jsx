@@ -4,7 +4,7 @@ import "../Comment.Component/comment.css";
 import { AiOutlineHeart, AiOutlineShareAlt, AiFillHeart } from "react-icons/ai";
 import { GoComment } from "react-icons/go";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { likePost, dislikePost } from "../../redux/reducers/postSlice";
 import {
@@ -14,6 +14,8 @@ import {
 
 export const Post = ({ post }) => {
   const dispatch = useDispatch();
+  const { username, postId } = useParams();
+  // console.log("currentLocation", username, postId);
   const user = useSelector((state) => state.auth.user);
   const bookmarks = useSelector((state) => state.posts.bookmarks);
   let isPostLikedByUser = post.likes.likedBy?.some(
@@ -27,21 +29,22 @@ export const Post = ({ post }) => {
   )
     ? true
     : false;
+
   return (
     <>
-      <div className="new-post">
+      <div className="new-post glass-effect glass-blur">
         <div className="new-post-body">
           <div className="avatar-sec">
-            <img
-              src={post.profilePhoto}
-              alt="..."
-              className="avatar avatar-md"
-            />
+            <Link to={`/home/${post.username}`}>
+              <img src={post.profilePhoto} alt="..." className="post-img" />
+            </Link>
           </div>
           <div className="textarea-container">
             <div className="user-info  mgT-4">
-              <div className="user capitalize">{post.firstName} </div>
-              <Link to={`/${post.username}`}>
+              <Link to={`/home/${post.username}`}>
+                <div className="user capitalize">{post.firstName} </div>
+              </Link>
+              <Link to={`/home/${post.username}`}>
                 <div className="user-id cursor">@{post.username}</div>
               </Link>
               <div className="user-id">•</div>
@@ -51,7 +54,7 @@ export const Post = ({ post }) => {
               <p className="comment-text ">{post.content} </p>
             </div>
 
-            <ul className="comment-options mgT-16">
+            <div className="comment-options mgT-16">
               <li
                 className="comment-option cursor"
                 onClick={() => {
@@ -63,7 +66,7 @@ export const Post = ({ post }) => {
                 {isPostLikedByUser ? <AiFillHeart /> : <AiOutlineHeart />}
                 {post.likes.likeCount}
               </li>
-              <Link to={`/${user.username}/${post._id}`}>
+              <Link to={`/home/${username}/${post._id}`}>
                 <li className="comment-option cursor">
                   <GoComment />
                   {post.comments.length}
@@ -88,7 +91,7 @@ export const Post = ({ post }) => {
                   <BsBookmark />
                 )}
               </li>
-            </ul>
+            </div>
           </div>
         </div>
       </div>

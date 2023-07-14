@@ -2,17 +2,24 @@
   display: flex;
   gap: 5px;
 }
-.user {
+/* .user {
   font-size: 16px;
   font-weight: 500;
-}
+} */
 .color-text {
+  font-family: "Poppins", sans-serif;
+
   color: #764abc;
 }
 .comment-text {
-  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
 }
 .user-id {
+  font-size: 18px;
+  line-height: 2rem;
   color: #918b8b;
 }
 .cursor {
@@ -30,15 +37,15 @@
 .currPostNdcommemt {
   display: flex;
   flex-direction: column;
-  width: 50%;
   gap: 34px;
+  width: -webkit-fill-available;
 }
 .add-comment-sec {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background-color: var(--post-gray-bg);
+  /* background-color: var(--post-gray-bg); */
   padding: 16px;
   border-radius: 8px;
 }

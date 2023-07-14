@@ -18,7 +18,7 @@ export const CommentCard = ({ comments, replyingTo, postId }) => {
   const dispatch = useDispatch();
   return (
     <>
-      <div className="new-post">
+      <div className="new-post glass-blur glass-effect">
         <div className="new-post-body">
           <div className="avatar-sec">
             <img

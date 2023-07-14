@@ -1,99 +1,188 @@
 import React from "react";
 import "./left-aside.css";
-import { BiHomeSmile, BiBookmark } from "react-icons/bi";
-import { MdOutlineTravelExplore } from "react-icons/md";
-import { RiNotificationLine } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
-import { IoIosLogOut } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducers/authSlice";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+// import { TfiRocket } from "react-icons/tfi";
+import { AiFillHome } from "react-icons/ai";
+import {
+  VscActivateBreakpoints,
+  VscAccount,
+  VscBookmark,
+  VscBellDot,
+  VscChevronRight,
+  VscRocket,
+  VscChevronLeft,
+} from "react-icons/vsc";
+import { useState } from "react";
 
 export const LeftAside = () => {
   const user = useSelector((state) => state.auth.user);
   const allUser = useSelector((state) => state.users.users);
   const loginDetails = allUser.find((item) => item.username === user?.username);
+  const [sideBar, setSideBar] = useState(true);
+
+  const sideBarHandler = () => {
+    setSideBar((prev) => !prev);
+  };
 
   const dispatch = useDispatch();
   return (
     <>
-      <div className="left-aside-position">
-        <nav className="lf-aside">
-          <ul className="lf-aside-items">
-            <NavLink to="/home">
-              <li className="lf-aside-item mgT-8">
-                <BiHomeSmile />
-                <span>Home</span>
-              </li>
-            </NavLink>
-
-            <NavLink to="/explore">
-              <li className="lf-aside-item mgT-8">
-                <MdOutlineTravelExplore />
-                <span>Explore</span>
-              </li>
-            </NavLink>
-
-            <NavLink to="/bookmarks">
-              <li className="lf-aside-item mgT-8">
-                <BiBookmark />
-                <span>Bookmarks</span>
-              </li>
-            </NavLink>
-
-            {/* <li className="lf-aside-item mgT-8">
-              <RiNotificationLine />
-              <span>Notification</span>
-            </li> */}
-
+      {sideBar ? (
+        <nav className="sidebar-container flex">
+          <ul className="sidebar-wrapper">
             <NavLink
-              to={`/${loginDetails?.username}`}
-              className={(isActive) =>
-                "activeLink" + (!isActive ? "inactiveLink" : "")
+              to="/home"
+              className={({ isActive, isPending }) =>
+                isActive ? " gradient" : "sidebar-item"
               }
             >
-              <li className="lf-aside-item mgT-8">
-                <CgProfile />
-                <span>Profile</span>
-              </li>
-            </NavLink>
-
-            <NavLink to="/home">
-              <li className="lf-aside-item mgT-8">
-                <button className="btn bg-pur width100">Create New Post</button>
+              <li className="sidebar-item item-home">
+                <AiFillHome />
               </li>
             </NavLink>
           </ul>
-          <div className="profile">
-            <ul class="list border displayF space-between ppl-yk mgT-16">
-              <Link to={`/${loginDetails?.username}`}>
-                <div className="list-start-sec displayF">
-                  <img
-                    src={user.profilePhoto}
-                    alt="..."
-                    class="avatar avatar-s cursor"
-                  />
-                  <li className="list-items list-width">
-                    {user.firstName}
-                    <span className="list-sec-text">@{user.username}</span>
-                  </li>
-                </div>
+          <ul className="sidebar-wrapper">
+            <NavLink
+              to="explore"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item gradient-orange gradient"
+                  : "sidebar-item"
+              }
+            >
+              <VscActivateBreakpoints />
+              Explore
+            </NavLink>
+
+            <NavLink
+              to="bookmarks"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item gradient-pink gradient"
+                  : "sidebar-item"
+              }
+            >
+              <VscBookmark />
+              Bookmarks
+            </NavLink>
+
+            <NavLink
+              to="notification"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item gradient-green gradient"
+                  : "sidebar-item"
+              }
+            >
+              <VscBellDot />
+              Notification
+            </NavLink>
+
+            <NavLink
+              to="/"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item"
+                  : "sidebar-item gradient-purple gradient"
+              }
+            >
+              <VscRocket />
+              New Post
+            </NavLink>
+          </ul>
+
+          <ul className="sidebar-wrapper">
+            <li className="sidebar-item space-between">
+              <Link to="/profile">
+                <span className="flex-center gap20">
+                  <VscAccount />
+                  Profile
+                </span>
               </Link>
-              <div className="list-end-sec">
-                <p
-                  onClick={() => {
-                    console.log("logout ");
-                    dispatch(logout());
-                  }}
-                  className="follow capitalize cursor logout"
-                >
-                  <IoIosLogOut />
-                </p>
-              </div>
-            </ul>
-          </div>
+              <button className="sidebar-display-btn" onClick={sideBarHandler}>
+                <VscChevronLeft />
+              </button>
+            </li>
+          </ul>
         </nav>
-      </div>
+      ) : (
+        <nav className="sidebar-container flex">
+          <ul className="sidebar-wrapper">
+            <li className="sidebar-item item-home">
+              <AiFillHome />
+            </li>
+          </ul>
+          <ul className="sidebar-wrapper">
+            <NavLink
+              to="explore"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item sidebar-shrink gradient-orange gradient"
+                  : "sidebar-item sidebar-shrink"
+              }
+            >
+              <VscActivateBreakpoints />
+            </NavLink>
+
+            <NavLink
+              to="bookmarks"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item sidebar-shrink gradient-pink gradient"
+                  : "sidebar-item sidebar-shrink"
+              }
+            >
+              <VscBookmark />
+            </NavLink>
+
+            <NavLink
+              to="notification"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item sidebar-shrink gradient-green gradient"
+                  : "sidebar-item sidebar-shrink"
+              }
+            >
+              <VscBellDot />
+            </NavLink>
+
+            <NavLink
+              to="/home"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "sidebar-item sidebar-shrink"
+                  : "sidebar-item sidebar-shrink gradient-purple gradient"
+              }
+            >
+              <VscRocket />
+            </NavLink>
+
+            {/* <NavLink
+              to="/"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? ""
+                  : "sidebar-item sidebar-shrink  gradient"
+              }
+            > */}
+            <li className=" sidebar-item sidebar-shrink gradient">
+              <button className="btn-empty" onClick={sideBarHandler}>
+                <VscChevronRight />
+              </button>
+            </li>
+
+            {/* </NavLink> */}
+          </ul>
+
+          <ul className="sidebar-wrapper">
+            <li className="sidebar-item">
+              <VscAccount />
+            </li>
+          </ul>
+        </nav>
+      )}
     </>
   );
 };

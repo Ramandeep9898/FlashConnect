@@ -18,67 +18,61 @@ export const CreateNewPost = () => {
   const allUser = useSelector((state) => state.users.users);
   const loginDetails = allUser.find((item) => item.username === user.username);
 
-  const cloudinaryPost = async (postDetails) => {
-    const data = new FormData();
-    data.append("file", postDetails.postImage);
-    data.append(
-      "upload_preset",
-      process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
-    );
-    const requestOptions = {
-      method: "POST",
-      body: data,
-    };
-    // setIsLoading(true);
-    await fetch(process.env.REACT_APP_CLOUDINARY_API_URL, requestOptions)
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch(
-          createPost({ content: postDetails.content, postImage: json.url })
-        );
-        // setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const cloudinaryPost = async (postDetails) => {
+  //   const data = new FormData();
+  //   data.append("file", postDetails.postImage);
+  //   data.append(
+  //     "upload_preset",
+  //     process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+  //   );
+  //   const requestOptions = {
+  //     method: "POST",
+  //     body: data,
+  //   };
+  //   // setIsLoading(true);
+  //   await fetch(process.env.REACT_APP_CLOUDINARY_API_URL, requestOptions)
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       dispatch(
+  //         createPost({ content: postDetails.content, postImage: json.url })
+  //       );
+  //       // setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const postHandler = (postDetails) => {
-    if (postDetails.content !== "") {
-      if (postDetails.content.length > 5) {
-        if (postDetails.postImage !== "") {
-          cloudinaryPost(postDetails);
-        } else {
-          dispatch(createPost(postDetails));
-        }
-        setPostDetails({
-          content: "",
-          postImage: "",
-        });
-      } else {
-        console.log("Post length must be more than 5 chars!");
-      }
+    if (postDetails.content.length >= 5) {
+      dispatch(createPost(postDetails));
+      setPostDetails({
+        content: "",
+        postImage: "",
+      });
     } else {
-      console.log("Post is Empty. Try Again!");
+      console.log("write somthing u bitch");
     }
   };
   return (
     <>
-      <div className="new-post">
+      <div className="new-post glass-effect glass-blur">
         <div className="new-post-body">
           <div className="avatar-sec">
             <img
               src={loginDetails.profilePhoto}
               alt="..."
-              className="avatar avatar-md"
+              className="post-img"
             />
           </div>
           <div className="textarea-container">
             <textarea
               type="text"
-              className="textarea"
+              cols={2}
+              rows={10}
+              className="textarea no-outline"
               placeholder="Tell me what's on your mind..."
-              value={postDetails.postContent}
+              value={postDetails.content}
               onChange={(e) => {
                 setPostDetails((prev) => ({
                   ...prev,
@@ -88,7 +82,7 @@ export const CreateNewPost = () => {
             ></textarea>
             <div className="new-post-nav mgT-16">
               <div className="new-post-options cursor">
-                <ul
+                {/* <ul
                   className="new-post-item"
                   defaultValue={postDetails.postImage}
                   // onClick={(e) => {
@@ -98,6 +92,7 @@ export const CreateNewPost = () => {
                   //   }));
                   // }}
                 >
+                  <input type="file" className="input-file" />
                   <IoImageOutline />
                 </ul>
                 <ul className="new-post-item">
@@ -105,11 +100,11 @@ export const CreateNewPost = () => {
                 </ul>
                 <ul className="new-post-item">
                   <AiOutlineGif />
-                </ul>
+                </ul> */}
               </div>
               <ul className="new-post-item">
                 <button
-                  className="btn  bg-pur"
+                  className="btn gradient-purple gradient"
                   onClick={() => {
                     postHandler(postDetails);
                   }}

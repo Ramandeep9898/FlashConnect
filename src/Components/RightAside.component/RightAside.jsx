@@ -24,44 +24,40 @@ export const RightAside = () => {
 
   return (
     <>
-      <div className="right-aside">
-        <div className="ryt-aside">
-          <div className="ryt-aside-heading capitalize">
-            People you may know
-          </div>
-          {mightKnowUser.map((suggestions) => (
-            <>
-              <ul
-                key={suggestions._id}
-                class="list border displayF space-between ppl-yk mgT-16"
-              >
-                <div className="list-start-sec displayF">
-                  <img
-                    src={suggestions.profilePhoto}
-                    alt="..."
-                    class="avatar avatar-s cursor"
-                  />
-                  <Link to={`/${suggestions.username}`}>
-                    <li className="list-items list-width">
-                      {suggestions.firstName}
-                      <span className="list-sec-text">
-                        @{suggestions.username}
-                      </span>
-                    </li>
-                  </Link>
-                </div>
-                <div className="list-end-sec">
-                  <p
-                    className="follow capitalize cursor "
-                    onClick={() => dispatch(follow(suggestions._id))}
-                  >
-                    follow +
-                  </p>
-                </div>
-              </ul>
-            </>
-          ))}
-        </div>
+      <div className="ryt-aside glass-effect glass-blur ">
+        <div className=" user capitalize">People you may know</div>
+        {mightKnowUser.map((suggestions) => (
+          <>
+            <ul
+              key={suggestions._id}
+              class=" bg-black list border displayF space-between ppl-yk mgT-16"
+            >
+              <div className="list-start-sec displayF">
+                <img
+                  src={suggestions.profilePhoto}
+                  alt="..."
+                  class="avatar avatar-s cursor"
+                />
+                <Link to={`${suggestions.username}`}>
+                  <li className="list-items follow list-width">
+                    {suggestions.firstName}
+                    <span className="list-sec-text comment-option">
+                      @{suggestions.username}
+                    </span>
+                  </li>
+                </Link>
+              </div>
+              <div className="list-end-sec">
+                <button
+                  className="follow capitalize cursor empty-btn"
+                  onClick={() => dispatch(follow(suggestions._id))}
+                >
+                  follow +
+                </button>
+              </div>
+            </ul>
+          </>
+        ))}
       </div>
 
       {/* <div className="right-aside">

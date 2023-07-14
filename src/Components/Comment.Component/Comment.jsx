@@ -1,8 +1,5 @@
 import React from "react";
 import "./comment.css";
-import { Header } from "../Header.Component/header";
-import { LeftAside } from "../LeftAside.Component/LeftAside";
-import { RightAside } from "../RightAside.component/RightAside";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Post } from "../NewPost.Component/Post";
@@ -21,16 +18,10 @@ export const Comment = () => {
 
   return (
     <>
-      <div className="header-position">
-        <Header />
-      </div>
       <div className="container-main">
-        <div className="left-aside-position">
-          <LeftAside />
-        </div>
         <div className="currPostNdcommemt">
           <Post key={currentPost._id} post={currentPost} />
-          <div className="add-comment-sec">
+          <div className="add-comment-sec glass-blur glass-effect">
             <div className="input-box width100 ">
               <input
                 id="text"
@@ -61,9 +52,6 @@ export const Comment = () => {
               postId={postId}
             />
           ))}
-        </div>
-        <div className="right-aside">
-          <RightAside />
         </div>
       </div>
     </>

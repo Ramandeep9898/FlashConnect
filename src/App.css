@@ -29,6 +29,31 @@
   --headingColorblack: #ICIE21;
   --post-gray-bg: #6067701a;
   --grey-text: #0000008a;
+  --gradient-blue: linear-gradient(
+    90deg,
+    rgb(0, 198, 255) 0%,
+    rgb(0, 114, 255) 100%
+  );
+  --gradient-green: linear-gradient(
+    90deg,
+    rgb(20, 184, 166) 0%,
+    rgb(34, 197, 94) 100%
+  );
+  --gradient-purple: linear-gradient(
+    90deg,
+    rgb(217, 70, 239) 0%,
+    rgb(168, 85, 247) 100%
+  );
+  --gradient-orange: linear-gradient(
+    90deg,
+    rgb(239, 68, 68) 0%,
+    rgb(245, 158, 11) 100%
+  );
+  --gradient-pink: linear-gradient(
+    90deg,
+    rgb(236, 72, 153) 0%,
+    rgb(239, 68, 68) 100%
+  );
 }
 .grey-color {
   color: var(--grey-text);
@@ -37,4 +62,58 @@
 .gap {
   display: flex;
   gap: 10px;
+}
+body {
+  background-color: #000;
+}
+.glass-effect {
+  background: hsla(0, 0%, 100%, 0.07);
+  border: 1px solid hsla(0, 0%, 100%, 0.08);
+}
+.glass-blur {
+  backdrop-filter: blur(25px);
+}
+.text-white {
+  color: #fff;
+}
+.sidebar-profile {
+  border-right: 1px solid hsla(0, 0%, 100%, 0.08);
+}
+.profile-layout {
+  display: flex;
+}
+.profile-layout > nav {
+  width: 20%;
+}
+.profile {
+  /* border: 1px solid hsla(0, 0%, 100%, 0.08);
+  background: hsla(0, 0%, 100%, 0.07);
+  backdrop-filter: blur(25px); */
+  padding: 110px 68px;
+  width: 80%;
+}
+.profile-card {
+  border: 1px solid hsla(0, 0%, 100%, 0.08);
+  /* background: hsla(0, 0%, 100%, 0.07); */
+  backdrop-filter: blur(25px);
+  padding: 16px 32px 32px 32px;
+  border-radius: 8px;
+  width: 80%;
+}
+.label {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.5;
+}
+.value {
+  letter-spacing: 1px;
+
+  /* text-transform: uppercase; */
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  /* opacity: 0.5; */
 }

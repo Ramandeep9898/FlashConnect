@@ -34,7 +34,7 @@ export const createPost = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return console.log(error);
+      return rejectWithValue(`${error.response.data.errors}`);
     }
   }
 );

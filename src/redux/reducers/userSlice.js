@@ -113,6 +113,7 @@ export const userSlice = createSlice({
           item.username === followUser.username ? followUser : item
         );
         state.profileUser = action.payload.followUser;
+        console.log("state kiddo", state.users);
       })
       .addCase(unfollow.pending, (state) => {
         console.log("loading");

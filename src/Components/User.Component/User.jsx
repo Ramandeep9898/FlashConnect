@@ -11,14 +11,13 @@ import { Post } from "../NewPost.Component/Post";
 
 export const User = () => {
   const { username } = useParams();
-  console.log("username", username);
-  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const allUser = useSelector((state) => state.users.users);
-
+  const loggedInUser = useSelector((state) => state.auth.user);
   const logindetails = allUser.find(
-    (item) => item.usersname === user.usersname
+    (item) => item.usersname === loggedInUser.usersname
   );
 
   const profileUser = allUser.find((item) => item.username === username);
@@ -31,8 +30,7 @@ export const User = () => {
     (user) => user.username === profileUser?.username
   );
 
-
-  console.log("followingCurrentUser", followingCurrentUser);
+  console.log("followingCurrentUser", profileUser);
 
   useEffect(() => {
     if (currentUser) {
@@ -42,106 +40,87 @@ export const User = () => {
 
   return (
     <>
-      <Header />
-      <div className="container-main">
-        <LeftAside />
-
-        <div className="main">
-          {/* profile */}
-          <div className="new-post">
-            <div className="new-post-body">
-              <div className="avatar-sec">
-                <img
-                  src={profileUser.profilePhoto}
-                  alt="..."
-                  className="avatar avatar-xl"
-                />
+      <div className="new-post glass-effect glass-blur">
+        <div className="new-post-body">
+          <div className="avatar-sec">
+            <img
+              src={profileUser.profilePhoto}
+              alt="..."
+              className="post-img"
+            />
+          </div>
+          <div className="textarea-container">
+            <div className="user-container">
+              <div className="h4 fW-700 text-white">
+                {profileUser.firstName}
               </div>
-              <div className="textarea-container">
-                <div className="user-container">
-                  <div className="h4 fW-700">{profileUser.firstName}</div>
-                  <div className="h5 grey-color">@{profileUser.username}</div>
-                  <div className="h5 mgT-16">{profileUser.bio}</div>
-                  <div className="h5 mgT-16">
-                    <a href="https://ramandeep.netlify.app/index.html">
-                      https://ramandeep.netlify.app/index.html
-                    </a>
-                  </div>
-                </div>
-                <div className="new-post-nav mgT-16">
-                  <div className="new-post-options ">
-                    <ul className="h5">
-                      <span>
-                        <span className="fW-500">
-                          {" "}
-                          {profileUser.followers.length}
-                        </span>{" "}
-                        Followers
-                      </span>
-                    </ul>
-                    <ul className="h5">
-                      <span>
-                        <span className="fW-500">
-                          {" "}
-                          {user.following.length}{" "}
-                        </span>{" "}
-                        Following
-                      </span>
-                    </ul>
-                    <ul className="h5">
-                      <span>
-                        <span className="fW-500">
-                          {" "}
-                          {profileUser.followers.length}
-                        </span>{" "}
-                        post
-                      </span>
-                    </ul>
-                  </div>
-                  <ul className="h5 gap">
-                    <button className="btn bg-pur ">
-                      <FiShare2 />
+              <div className="h5 user-id">@{profileUser.username}</div>
+              <div className="h5 mgT-16 text-white">{profileUser.bio}</div>
+              {/* <div className="h5 mgT-16">
+                <a href="https://ramandeep.netlify.app/index.html">
+                  https://ramandeep.netlify.app/index.html
+                </a>
+              </div> */}
+            </div>
+            <div className="new-post-nav mgT-16">
+              <div className="new-post-options ">
+                <ul className="h5 user-id">
+                  <span>
+                    <span className="fW-500">
+                      {profileUser?.followers?.length}
+                    </span>
+                    Followers
+                  </span>
+                </ul>
+                <ul className="h5 user-id">
+                  <span>
+                    <span className="fW-500"> {user?.following?.length} </span>
+                    Following
+                  </span>
+                </ul>
+                <ul className="h5 user-id">
+                  <span>
+                    <span className="fW-500">{currentUserPosts.length}</span>
+                    post
+                  </span>
+                </ul>
+              </div>
+              <ul className="h5 gap">
+                <button className="btn bg-pur ">
+                  <FiShare2 />
+                </button>
+                {logindetails.username !== profileUser.username ? (
+                  <button
+                    className="btn bg-pur "
+                    onClick={() => {
+                      followingCurrentUser
+                        ? dispatch(unfollow(profileUser._id))
+                        : dispatch(follow(profileUser._id));
+                    }}
+                  >
+                    {followingCurrentUser ? "following" : "follow"}
+                  </button>
+                ) : null}
+                {logindetails?.username === profileUser?.username ? (
+                  <div className="gap">
+                    <button className="btn bg-pur">
+                      <FiEdit2 />
                     </button>
-                    {logindetails.username !== profileUser.username ? (
-                      <button
-                        className="btn bg-pur "
-
-
-                        onClick={() => {
-                          followingCurrentUser
-                            ? dispatch(unfollow(profileUser._id))
-                            : dispatch(follow(profileUser._id));
-                        }}
-                      >
-                        {followingCurrentUser ? "following" : "follow"}
-                      </button>
-                    ) : null}
-                    {logindetails?.username === profileUser?.username ? (
-                      <div className="gap">
-                        <button className="btn bg-pur">
-                          <FiEdit2 />
-                        </button>
-                        <button className="btn bg-pur">
-                          <FiLogOut />
-                        </button>
-                      </div>
-                    ) : (
-                      " "
-                    )}
-                  </ul>
-                </div>
-              </div>
+                    <button className="btn bg-pur">
+                      <FiLogOut />
+                    </button>
+                  </div>
+                ) : (
+                  " "
+                )}
+              </ul>
             </div>
           </div>
-          {/* userPost */}
-          {currentUserPosts.map((posts) => (
-            <Post post={posts} key={posts._id} />
-          ))}
-          {/* <Post /> */}
         </div>
-
-        <RightAside />
       </div>
+      {currentUserPosts.map((posts) => (
+        <Post post={posts} key={posts._id} />
+      ))}
     </>
   );
 };

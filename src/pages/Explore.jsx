@@ -10,22 +10,9 @@ export const Explore = () => {
   console.log("post", posts);
   return (
     <>
-      <div className="header-position">
-        <Header />
-      </div>
-      <div className="container-main">
-        <div className="left-aside-position">
-          <LeftAside />
-        </div>
-        <div className="main">
-          {posts.map((post) => (
-            <Post key={post._id} post={post} />
-          ))}
-        </div>
-        <div className="right-aside">
-          <RightAside />
-        </div>
-      </div>
+      {posts.map((post) => (
+        <Post key={post._id} post={post} />
+      ))}
     </>
   );
 };
